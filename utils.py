@@ -5,13 +5,23 @@ import json
 def set_console_color(color):
     return getattr(Fore, color.upper(), None)
 
+def set_console_background(color):
+    return getattr(Back, color.upper(), None)
 
 def set_console_style(style):
     return getattr(Style, style.upper(), None)
 
+def reset_console_color():
+    return Fore.RESET
+
+def set_console_background(color):
+    return Back.RESET
+
+def reset_console_style():
+    return Style.NORMAL
 
 def reset_console_ansi_escapes():
-    return Fore.RESET + Back.RESET + Style.RESET_ALL
+    return Style.RESET_ALL
 
 def get_pokemon_data_by_name(pokemon_name, pokemon_data):
     
@@ -22,9 +32,8 @@ def get_pokemon_data_by_name(pokemon_name, pokemon_data):
 
 
 def print_pokemons(pokemon_1, pokemon_2):
-    import colorama
     for row in zip(pokemon_1.split('\n'), pokemon_2.split('\n')):
-        print(colorama.Fore.RED + row[0] + colorama.Fore.BLUE +" " + row[1] + colorama.Fore.RESET)
+        print(Fore.RED + row[0] + Fore.BLUE +" " + row[1] + Fore.RESET)
         
         
 def read_file_data(file):
@@ -39,5 +48,19 @@ def read_file_data(file):
         
     except json.JSONDecodeError as e:
         print(f"Error: Failed decoding JSON in '{file}': {e}")
+
+    return None
+
+def read_ascii_art(folder, pokemon):
+        
+    try:
+        
+        return open(folder + pokemon, 'r').read()
+        
+    except FileNotFoundError:
+        print(f"Error: The file '{folder + pokemon}' does not exist.")
+        
+    except json.JSONDecodeError as e:
+        print(f"Error: Failed decoding JSON in '{folder + pokemon}': {e}")
 
     return None

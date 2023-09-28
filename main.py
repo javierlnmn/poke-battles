@@ -8,7 +8,6 @@ import random
 
 import game
 from config import (
-    POKEMON_ASCII_ART_PATH,
     POKEMON_DATA_FILE_PATH,
     POKEMON_TYPES_FILE_PATH,
 )
@@ -28,29 +27,30 @@ def main():
     clear_screen.clear()
 
     selected_pokemon = choose_pokemon()
-    time.sleep(.8)
     clear_screen.clear()
 
     print("You chose " + str(selected_pokemon) + "!")
+    print(selected_pokemon.get_ascii_art())
     time.sleep(1.5)
     clear_screen.clear()
-    time.sleep(.8)
+    time.sleep(0.8)
 
     enemy_pokemon = random_pokemon()
-    print('Oh!')
+    print("Oh!")
     time.sleep(1.5)
     clear_screen.clear()
-    time.sleep(.8)
-    
-    print('A wild ' + str(enemy_pokemon) + ' appeared!')
+    time.sleep(0.8)
+
+    print("A wild " + str(enemy_pokemon) + " appeared!")
+    print(enemy_pokemon.get_ascii_art())
     time.sleep(1.5)
     clear_screen.clear()
-    time.sleep(.8)
+    time.sleep(0.8)
+
 
 def choose_pokemon():
-    
     pokemon_list = []
-    
+
     for id, data in enumerate(pokemon_data, start=1):
         pokemon = Pokemon(
             id=id,
@@ -74,9 +74,8 @@ def choose_pokemon():
 
 
 def random_pokemon():
-    
-    pokemon_index = random.randint(0, len(pokemon_data)-1)
-            
+    pokemon_index = random.randint(0, len(pokemon_data) - 1)
+
     pokemon = Pokemon(
         id=pokemon_index,
         name=pokemon_data[pokemon_index]["name"],
@@ -86,7 +85,7 @@ def random_pokemon():
         stats=pokemon_data[pokemon_index]["stats"],
         abilities=pokemon_data[pokemon_index]["abilities"],
     )
-    
+
     return pokemon
 
 
