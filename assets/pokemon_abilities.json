@@ -1,0 +1,27 @@
+[
+    {
+        "name": "tackle",
+        "visible_name": "Tackle",
+        "type": 1
+    },
+    {
+        "name": "ember",
+        "visible_name": "Ember",
+        "type": 2
+    },
+    {
+        "name": "thunder_shock",
+        "visible_name": "Thunder Shock",
+        "type": 4
+    },
+    {
+        "name": "surf",
+        "visible_name": "Surf",
+        "type": 3
+    },
+    {
+        "name": "water_gun",
+        "visible_name": "Water Gun",
+        "type": 3
+    }
+]
