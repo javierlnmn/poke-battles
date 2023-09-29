@@ -16,7 +16,8 @@ from pokemon import Pokemon
 
 clear_screen.clear()
 
-pokemon_data = read_file_data(POKEMON_DATA_FILE_PATH)
+pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
+pokemon_list_names = list(pokemon_list_data.keys())
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
 
@@ -51,15 +52,18 @@ def main():
 def choose_pokemon():
     pokemon_list = []
 
-    for id, data in enumerate(pokemon_data, start=1):
+    for id, name in enumerate(pokemon_list_data, start=1):
+        
+        pokemon_data = pokemon_list_data[name]
+        
         pokemon = Pokemon(
             id=id,
-            name=data["name"],
-            visible_name=data["visible_name"],
-            type=data["type"],
-            color=data["color"],
-            stats=data["stats"],
-            abilities=data["abilities"],
+            name=name,
+            visible_name=pokemon_data["visible_name"],
+            type=pokemon_data["type"],
+            color=pokemon_data["color"],
+            stats=pokemon_data["stats"],
+            abilities=pokemon_data["abilities"],
         )
 
         pokemon_list.append(pokemon)
@@ -74,16 +78,18 @@ def choose_pokemon():
 
 
 def random_pokemon():
-    pokemon_index = random.randint(0, len(pokemon_data) - 1)
+    pokemon_index = random.randint(0, len(pokemon_list_data) - 1)
+    selected_pokemon_name = pokemon_list_names[pokemon_index] 
+    pokemon_data = pokemon_list_data[selected_pokemon_name]  
 
     pokemon = Pokemon(
         id=pokemon_index,
-        name=pokemon_data[pokemon_index]["name"],
-        visible_name=pokemon_data[pokemon_index]["visible_name"],
-        type=pokemon_data[pokemon_index]["type"],
-        color=pokemon_data[pokemon_index]["color"],
-        stats=pokemon_data[pokemon_index]["stats"],
-        abilities=pokemon_data[pokemon_index]["abilities"],
+        name=selected_pokemon_name,
+        visible_name=pokemon_data["visible_name"],
+        type=pokemon_data["type"],
+        color=pokemon_data["color"],
+        stats=pokemon_data["stats"],
+        abilities=pokemon_data["abilities"],
     )
 
     return pokemon

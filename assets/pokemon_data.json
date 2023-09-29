@@ -1,6 +1,5 @@
-[
-    {
-        "name": "pikachu",
+{
+    "pikachu": {
         "visible_name": "Pikachu",
         "type": [
             "electric"
@@ -19,8 +18,7 @@
             "thunder_shock"
         ]
     },
-    {
-        "name": "charmander",
+    "charmander": {
         "visible_name": "Charmander",
         "type": [
             "fire"
@@ -39,8 +37,7 @@
             "ember"
         ]
     },
-    {
-        "name": "lapras",
+    "lapras": {
         "visible_name": "Lapras",
         "type": [
             "water"
@@ -59,4 +56,4 @@
             "water_gun"
         ]
     }
-]
+}

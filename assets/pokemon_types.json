@@ -1,6 +1,5 @@
-[
-    {
-        "name": "normal",
+{
+    "normal": {
         "visible_name": "Normal",
         "inmune_against": [
             "ghost"
@@ -11,8 +10,7 @@
         ],
         "strong_against": []
     },
-    {
-        "name": "fire",
+    "fire": {
         "visible_name": "Fire",
         "inmune_against": [],
         "weak_against": [
@@ -28,8 +26,7 @@
             "steel"
         ]
     },
-    {
-        "name": "water",
+    "water": {
         "visible_name": "Water",
         "inmune_against": [],
         "weak_against": [
@@ -43,8 +40,7 @@
             "rock"
         ]
     },
-    {
-        "name": "electric",
+    "electric": {
         "visible_name": "Electric",
         "inmune_against": [
             "ground"
@@ -59,8 +55,7 @@
             "flying"
         ]
     },
-    {
-        "name": "grass",
+    "grass": {
         "visible_name": "Grass",
         "inmune_against": [],
         "weak_against": [
@@ -78,8 +73,7 @@
             "rock"
         ]
     },
-    {
-        "name": "ice",
+    "ice": {
         "visible_name": "Ice",
         "inmune_against": [],
         "weak_against": [
@@ -95,8 +89,7 @@
             "dragon"
         ]
     },
-    {
-        "name": "fighting",
+    "fighting": {
         "visible_name": "Fighting",
         "inmune_against": [
             "ghost"
@@ -116,8 +109,7 @@
             "steel"
         ]
     },
-    {
-        "name": "poison",
+    "poison": {
         "visible_name": "Poison",
         "inmune_against": [
             "steel"
@@ -133,8 +125,7 @@
             "fairy"
         ]
     },
-    {
-        "name": "ground",
+    "ground": {
         "visible_name": "Ground",
         "inmune_against": [
             "flying"
@@ -151,8 +142,7 @@
             "steel"
         ]
     },
-    {
-        "name": "flying",
+    "flying": {
         "visible_name": "Flying",
         "inmune_against": [],
         "weak_against": [
@@ -166,8 +156,7 @@
             "bug"
         ]
     },
-    {
-        "name": "psychic",
+    "psychic": {
         "visible_name": "Psychic",
         "inmune_against": [
             "dark"
@@ -181,8 +170,7 @@
             "poison"
         ]
     },
-    {
-        "name": "bug",
+    "bug": {
         "visible_name": "Bug",
         "inmune_against": [],
         "weak_against": [
@@ -200,8 +188,7 @@
             "dark"
         ]
     },
-    {
-        "name": "rock",
+    "rock": {
         "visible_name": "Rock",
         "inmune_against": [],
         "weak_against": [
@@ -216,8 +203,7 @@
             "bug"
         ]
     },
-    {
-        "name": "ghost",
+    "ghost": {
         "visible_name": "Ghost",
         "inmune_against": [
             "normal"
@@ -230,8 +216,7 @@
             "ghost"
         ]
     },
-    {
-        "name": "dragon",
+    "dragon": {
         "visible_name": "Dragon",
         "inmune_against": [
             "fairy"
@@ -243,8 +228,7 @@
             "dragon"
         ]
     },
-    {
-        "name": "dark",
+    "dark": {
         "visible_name": "Dark",
         "inmune_against": [],
         "weak_against": [
@@ -257,8 +241,7 @@
             "ghost"
         ]
     },
-    {
-        "name": "steel",
+    "steel": {
         "visible_name": "Steel",
         "inmune_against": [],
         "weak_against": [
@@ -273,8 +256,7 @@
             "fairy"
         ]
     },
-    {
-        "name": "fairy",
+    "fairy": {
         "visible_name": "Fairy",
         "inmune_against": [],
         "weak_against": [
@@ -288,4 +270,4 @@
             "dark"
         ]
     }
-]
+}
