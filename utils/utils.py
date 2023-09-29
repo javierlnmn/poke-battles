@@ -1,6 +1,5 @@
-from colorama import init, Fore, Back, Style
+from colorama import Fore, Back, Style
 import json
-
 
 def set_console_color(color):
     return getattr(Fore, color.upper(), None)
@@ -31,12 +30,10 @@ def get_pokemon_data_by_name(pokemon_name, pokemon_data):
         
     return None
 
-
 def print_pokemons(pokemon_1, pokemon_2):
     
     for row in zip(pokemon_1.split('\n'), pokemon_2.split('\n')):
-        print(Fore.RED + row[0] + Fore.BLUE +" " + row[1] + Fore.RESET)
-        
+        print(Fore.RED + row[0] + Fore.BLUE +" " + row[1] + Fore.RESET)        
         
 def read_file_data(file):
         
@@ -52,7 +49,6 @@ def read_file_data(file):
         print(f"Error: Failed decoding JSON in '{file}': {e}")
 
     return None
-
 
 def read_ascii_art(folder, pokemon):
         

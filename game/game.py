@@ -1,10 +1,4 @@
-from pokemon import Pokemon
-
-class Battle:
-    
-    def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
-        self.pokemon_1 = pokemon_1
-    
+from game.battle import Battle
 
 class Game:
     
