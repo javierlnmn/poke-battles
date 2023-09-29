@@ -7,7 +7,7 @@ from utils.ascii_art import (
     set_console_color,
     set_console_style,
     reset_console_ansi_escapes,
-    reset_console_style,
+    reset_console_style
 )
 from config.config import (
     POKEMON_DATA_FILE_PATH,
@@ -53,42 +53,46 @@ class Pokemon:
         )
 
     def get_ascii_art(self) -> str:
+        return read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
+        
+    def get_ascii_art_color(self) -> str:
         return (
             set_console_color(self.color)
             + read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
             + reset_console_ansi_escapes()
         )
 
-    def visual_stats_sprite(self) -> str:
+    def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
         health_percentage = (current_hp / max_hp) * 100
         bar_length = int(health_percentage / 2)
 
+        # Ansii characters are counted as well
         health_indicator = (
             "HP: "
-            + set_console_style("bright")
             + str(current_hp)
-            + reset_console_style()
             + " / "
             + str(max_hp)
         )
+        
+        health_indicator += (' ') * (50 - len(health_indicator))
 
-        health_bar = "[" + "#" * bar_length + "-" * (50 - bar_length) + "]"
+        health_bar = "[" + "#" * bar_length + "-" * (46 - bar_length) + "]"
 
         ascii_art = self.get_ascii_art()
 
         combined_sprite = (
             ascii_art
             + "\n"
-            + set_console_color(self.color)
+            + set_console_style('bright')
             + health_indicator
+            + reset_console_style()
             + "\n"
             + health_bar
-            + reset_console_ansi_escapes()
         )
 
-        return combined_sprite
+        return set_console_color(self.color) + combined_sprite + reset_console_ansi_escapes()
 
 
 def choose_pokemon():
