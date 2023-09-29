@@ -1,13 +1,11 @@
 from colorama import Fore, Back, Style
-import clear_screen
 import pyfiglet
-import shutil
-import colorama
+import clear_screen
 
-import json
-import time
-import random
 import inspect
+import random
+import shutil
+import time
 
 
 def set_console_color(color):
@@ -34,54 +32,11 @@ def reset_console_ansi_escapes():
 def get_random_color():
     available_colors = [
         name
-        for name, value in inspect.getmembers(colorama.Fore)
+        for name, value in inspect.getmembers(Fore)
         if name.isupper() and isinstance(value, str)
     ]
     random_color = random.choice(available_colors)
     return random_color
-
-def get_pokemon_data_by_name(pokemon_name, pokemon_data):
-    
-    for pokemon in pokemon_data:
-        if pokemon["name"] == pokemon_name:
-            return pokemon
-        
-    return None
-
-def print_pokemons(pokemon_1, pokemon_2):
-    
-    for row in zip(pokemon_1.split('\n'), pokemon_2.split('\n')):
-        print(Fore.RED + row[0] + Fore.BLUE +" " + row[1] + Fore.RESET)        
-        
-def read_file_data(file):
-        
-    try:
-        
-        with open(file, 'r') as read_file:
-            return json.load(read_file)
-        
-    except FileNotFoundError:
-        print(f"Error: The file '{file}' does not exist.")
-        
-    except json.JSONDecodeError as e:
-        print(f"Error: Failed decoding JSON in '{file}': {e}")
-
-    return None
-
-def read_ascii_art(folder, pokemon):
-        
-    try:
-        
-        return open(folder + pokemon, 'r').read()
-        
-    except FileNotFoundError:
-        print(f"Error: The file '{folder + pokemon}' does not exist.")
-        
-    except json.JSONDecodeError as e:
-        print(f"Error: Failed decoding JSON in '{folder + pokemon}': {e}")
-
-    return None
-
 
 def print_full_screen_title(title_text, font="slant"):
 

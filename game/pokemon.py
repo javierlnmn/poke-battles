@@ -1,25 +1,25 @@
 import pick
 
 import random
-from utils.utils import (
-    read_file_data,
+
+from utils.general import read_file_data, read_ascii_art
+from utils.ascii_art import (
     set_console_color,
     set_console_style,
     reset_console_ansi_escapes,
-    read_ascii_art,
     reset_console_style,
 )
 from config.config import (
     POKEMON_DATA_FILE_PATH,
     POKEMON_TYPES_FILE_PATH,
-    POKEMON_ASCII_ART_PATH
+    POKEMON_ASCII_ART_PATH,
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
-pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)    
+pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
+
 
 class Pokemon:
-
     def __init__(self, id, name, visible_name, type, color, stats, abilities):
         self.id = id
         self.name = name
@@ -89,15 +89,14 @@ class Pokemon:
         )
 
         return combined_sprite
-    
-    
+
+
 def choose_pokemon():
     pokemon_list = []
 
     for id, name in enumerate(pokemon_list_data, start=1):
-        
         pokemon_data = pokemon_list_data[name]
-        
+
         pokemon = Pokemon(
             id=id,
             name=name,
@@ -122,8 +121,8 @@ def choose_pokemon():
 def random_pokemon():
     pokemon_list_names = list(pokemon_list_data.keys())
     pokemon_index = random.randint(0, len(pokemon_list_data) - 1)
-    selected_pokemon_name = pokemon_list_names[pokemon_index] 
-    pokemon_data = pokemon_list_data[selected_pokemon_name]  
+    selected_pokemon_name = pokemon_list_names[pokemon_index]
+    pokemon_data = pokemon_list_data[selected_pokemon_name]
 
     pokemon = Pokemon(
         id=pokemon_index,

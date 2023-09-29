@@ -5,7 +5,7 @@ import time
 
 from game.game import Game
 from game.pokemon import choose_pokemon, random_pokemon
-from utils.utils import print_full_screen_title_animation
+from utils.ascii_art import print_full_screen_title_animation
 
 
 clear_screen.clear()
