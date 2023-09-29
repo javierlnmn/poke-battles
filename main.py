@@ -5,6 +5,7 @@ import time
 
 from game.game import Game
 from game.pokemon import choose_pokemon, random_pokemon
+from utils.utils import print_full_screen_title_animation
 
 
 clear_screen.clear()
@@ -35,6 +36,8 @@ def main():
     time.sleep(1.5)
     clear_screen.clear()
     time.sleep(0.8)
+    
+    print_full_screen_title_animation('Battle!')
 
 
 if __name__ == "__main__":

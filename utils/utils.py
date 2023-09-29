@@ -1,5 +1,14 @@
 from colorama import Fore, Back, Style
+import clear_screen
+import pyfiglet
+import shutil
+import colorama
+
 import json
+import time
+import random
+import inspect
+
 
 def set_console_color(color):
     return getattr(Fore, color.upper(), None)
@@ -13,7 +22,7 @@ def set_console_style(style):
 def reset_console_color():
     return Fore.RESET
 
-def set_console_background(color):
+def reset_console_background(color):
     return Back.RESET
 
 def reset_console_style():
@@ -21,6 +30,15 @@ def reset_console_style():
 
 def reset_console_ansi_escapes():
     return Style.RESET_ALL
+
+def get_random_color():
+    available_colors = [
+        name
+        for name, value in inspect.getmembers(colorama.Fore)
+        if name.isupper() and isinstance(value, str)
+    ]
+    random_color = random.choice(available_colors)
+    return random_color
 
 def get_pokemon_data_by_name(pokemon_name, pokemon_data):
     
@@ -63,3 +81,30 @@ def read_ascii_art(folder, pokemon):
         print(f"Error: Failed decoding JSON in '{folder + pokemon}': {e}")
 
     return None
+
+
+def print_full_screen_title(title_text, font="slant"):
+
+    terminal_width, terminal_height = shutil.get_terminal_size()
+
+    ascii_art = pyfiglet.figlet_format(title_text, font=font)
+
+    spaces_count = (terminal_width- len(ascii_art.splitlines()[0])) // 2
+
+    padding_lines_top = ((terminal_height-7) - len(ascii_art.splitlines())) // 2
+    padding_lines_bottom = (terminal_height-7) - len(ascii_art.splitlines()) - padding_lines_top
+
+    
+    print(set_console_color(get_random_color()))
+    print("\n" * padding_lines_top)
+    for line in ascii_art.splitlines():
+        print(" " * spaces_count + line)
+    print("\n" * padding_lines_bottom)
+    print(reset_console_ansi_escapes())
+    
+def print_full_screen_title_animation(title_text, font="slant"):
+    for i in range(0, 3):
+        print_full_screen_title(title_text, font)
+        time.sleep(.5)
+        clear_screen.clear()
+        time.sleep(.5)
