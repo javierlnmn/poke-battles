@@ -7,15 +7,17 @@ from utils.ascii_art import (
     set_console_color,
     set_console_style,
     reset_console_ansi_escapes,
-    reset_console_style
+    reset_console_style,
 )
 from config.config import (
     POKEMON_DATA_FILE_PATH,
     POKEMON_TYPES_FILE_PATH,
+    POKEMON_ABILITIES_FILE_PATH,
     POKEMON_ASCII_ART_PATH,
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
+pokemon_abilities = read_file_data(POKEMON_DATA_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
 
@@ -54,7 +56,7 @@ class Pokemon:
 
     def get_ascii_art(self) -> str:
         return read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
-        
+
     def get_ascii_art_color(self) -> str:
         return (
             set_console_color(self.color)
@@ -68,31 +70,34 @@ class Pokemon:
         health_percentage = (current_hp / max_hp) * 100
         bar_length = int(health_percentage / 2)
 
-        # Ansii characters are counted as well
+        # ansii characters are counted as well
         health_indicator = (
             "HP: "
+            + set_console_style("bright")
             + str(current_hp)
+            + reset_console_style()
             + " / "
             + str(max_hp)
         )
-        
-        health_indicator += (' ') * (50 - len(health_indicator))
+        unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
-        health_bar = "[" + "#" * bar_length + "-" * (46 - bar_length) + "]"
+        health_indicator += (" ") * (52 - len(unstyled_health_indicator))
+
+        health_bar = "[" + "#" * bar_length + "-" * (48 - bar_length) + "]"
 
         ascii_art = self.get_ascii_art()
 
-        combined_sprite = (
-            ascii_art
-            + "\n"
-            + set_console_style('bright')
-            + health_indicator
-            + reset_console_style()
-            + "\n"
-            + health_bar
-        )
+        combined_sprite = ascii_art + "\n" + health_indicator + "\n" + health_bar
 
-        return set_console_color(self.color) + combined_sprite + reset_console_ansi_escapes()
+        return (
+            set_console_color(self.color)
+            + combined_sprite
+            + reset_console_ansi_escapes()
+        )
+        
+    def get_abilities_list(self):
+        # return [ability for ability in pokemon_abilities if self.]
+        return None
 
 
 def choose_pokemon():
