@@ -14,7 +14,7 @@ clear_screen.clear()
 
 def main():
     # initialize colorama
-    init()
+    init(autoreset=True)
     # clear screen
     clear_screen.clear()
 

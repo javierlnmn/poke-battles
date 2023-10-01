@@ -11,8 +11,8 @@ class Game:
     def play_battle_pve(self):
         while not self.battle.winner:
             
-            pokemon_1_attack_list = self.battle.pokemon_1.
+            pokemon_1_attack_list = self.battle.pokemon_1.get_abilities_list()
             
             option, index = pick.pick(
-                pokemon_1_attack_list, "Choose a Pokèmon!", indicator=">", default_index=0
+                pokemon_1_attack_list, self.battle.get_battle_state(), indicator=">", default_index=0
             )

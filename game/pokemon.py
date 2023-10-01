@@ -1,4 +1,6 @@
-import pick
+import questionary
+import clear_screen
+import time
 
 import random
 
@@ -17,7 +19,7 @@ from config.config import (
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
-pokemon_abilities = read_file_data(POKEMON_DATA_FILE_PATH)
+pokemon_abilities = read_file_data(POKEMON_ABILITIES_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
 
@@ -94,10 +96,17 @@ class Pokemon:
             + combined_sprite
             + reset_console_ansi_escapes()
         )
-        
+
     def get_abilities_list(self):
-        # return [ability for ability in pokemon_abilities if self.]
-        return None
+        return [
+            pokemon_abilities[ability]["visible_name"]
+            for ability in pokemon_abilities
+            if self.abilities.count(ability) > 0
+        ]
+
+
+# def get_pokemon_object_list():
+#   return
 
 
 def choose_pokemon():
@@ -120,11 +129,44 @@ def choose_pokemon():
 
     pokemon_choose_list = [pokemon.visible_name for pokemon in pokemon_list]
 
-    option, index = pick.pick(
-        pokemon_choose_list, "Choose a Pokèmon!", indicator=">", default_index=0
-    )
+    confirmed = False
 
-    return pokemon_list[index]
+    while not confirmed:
+        clear_screen.clear()
+        time.sleep(0.8)
+
+        print(
+            "Select a "
+            + set_console_color("blue")
+            + "Pokè"
+            + set_console_color("yellow")
+            + "mon"
+            + reset_console_ansi_escapes()
+            + "\n"
+        )
+
+        selected_pokemon_name = questionary.select(
+            "",
+            choices=pokemon_choose_list,  # Use a lambda function
+            use_shortcuts=True,
+        ).ask()
+
+        clear_screen.clear()
+        time.sleep(0.8)
+
+        confirmed = questionary.confirm(
+            "Do you want to choose " + str(selected_pokemon_name) + "?"
+        ).ask()
+
+        if confirmed:
+            selected_pokemon = next(
+                pokemon
+                for pokemon in pokemon_list
+                if pokemon.visible_name == selected_pokemon_name
+            )
+            break
+
+    return selected_pokemon
 
 
 def random_pokemon():
