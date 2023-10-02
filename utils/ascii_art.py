@@ -36,9 +36,10 @@ def get_random_color():
         if name.isupper() and isinstance(value, str)
     ]
     random_color = random.choice(available_colors)
+    print(random_color); time.sleep(.6)
     return random_color
 
-def print_full_screen_title(title_text, font="slant"):
+def print_full_screen_title(title_text, color, font="slant"):
 
     terminal_width, terminal_height = shutil.get_terminal_size()
 
@@ -49,17 +50,18 @@ def print_full_screen_title(title_text, font="slant"):
     padding_lines_top = ((terminal_height-7) - len(ascii_art.splitlines())) // 2
     padding_lines_bottom = (terminal_height-7) - len(ascii_art.splitlines()) - padding_lines_top
 
-    
-    print(set_console_color(get_random_color()))
     print("\n" * padding_lines_top)
+    set_console_color(color)
     for line in ascii_art.splitlines():
         print(" " * spaces_count + line)
+    reset_console_ansi_escapes()
     print("\n" * padding_lines_bottom)
-    print(reset_console_ansi_escapes())
+
     
 def print_full_screen_title_animation(title_text, font="slant"):
+    clear_screen.clear()
     for i in range(0, 3):
-        print_full_screen_title(title_text, font)
+        print_full_screen_title(title_text, get_random_color(), font)
         time.sleep(.5)
         clear_screen.clear()
         time.sleep(.5)

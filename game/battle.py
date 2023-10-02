@@ -15,13 +15,9 @@ class Battle:
     def get_battle_state(self):
         battle_state = "\n".join(
             [
-                set_console_color(self.pokemon_1.color)
                 + row[0]
-                + reset_console_ansi_escapes()
                 + (' ')*15
-                + set_console_color(self.pokemon_2.color)
                 + row[1]
-                + reset_console_ansi_escapes()
                 for row in zip(
                     self.pokemon_1.get_visual_stats_sprite().split("\n"),
                     self.pokemon_2.get_visual_stats_sprite().split("\n"),

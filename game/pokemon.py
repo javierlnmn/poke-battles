@@ -10,6 +10,7 @@ from utils.ascii_art import (
     set_console_style,
     reset_console_ansi_escapes,
     reset_console_style,
+    reset_console_color,
 )
 from config.config import (
     POKEMON_DATA_FILE_PATH,
@@ -72,30 +73,41 @@ class Pokemon:
         health_percentage = (current_hp / max_hp) * 100
         bar_length = int(health_percentage / 2)
 
-        # ansii characters are counted as well
         health_indicator = (
             "HP: "
             + set_console_style("bright")
+            + set_console_color(self.color)
             + str(current_hp)
-            + reset_console_style()
+            + reset_console_ansi_escapes()
             + " / "
             + str(max_hp)
         )
+        
+        # ansii characters are counted as well
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
         health_indicator += (" ") * (52 - len(unstyled_health_indicator))
 
-        health_bar = "[" + "#" * bar_length + "-" * (48 - bar_length) + "]"
+        health_bar = (
+            set_console_color(self.color)
+            + "["
+            + reset_console_color()
+            + "#" * bar_length
+            + "-" * (48 - bar_length)
+            + set_console_color(self.color)
+            + "]"
+            + reset_console_color()
+        )
 
-        ascii_art = self.get_ascii_art()
+        ascii_art = (
+            set_console_color(self.color)
+            + self.get_ascii_art()
+            + reset_console_ansi_escapes()
+        )
 
         combined_sprite = ascii_art + "\n" + health_indicator + "\n" + health_bar
 
-        return (
-            set_console_color(self.color)
-            + combined_sprite
-            + reset_console_ansi_escapes()
-        )
+        return combined_sprite + reset_console_ansi_escapes()
 
     def get_abilities_list(self):
         return [
@@ -147,8 +159,8 @@ def choose_pokemon():
 
         selected_pokemon_name = questionary.select(
             "",
+            qmark="",
             choices=pokemon_choose_list,  # Use a lambda function
-            use_shortcuts=True,
         ).ask()
 
         clear_screen.clear()

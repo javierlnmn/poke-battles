@@ -18,7 +18,7 @@ def main():
     # clear screen
     clear_screen.clear()
 
-    print_full_screen_title("Poke - Battles")
+    print_full_screen_title("Poke - Battles", 'red')
     time.sleep(1.5)
     
     clear_screen.clear()
@@ -28,6 +28,7 @@ def main():
 
     selected_pokemon = choose_pokemon()
     clear_screen.clear()
+    time.sleep(.8)
 
     print("You chose " + str(selected_pokemon) + "!")
     print(selected_pokemon.get_ascii_art_color())
