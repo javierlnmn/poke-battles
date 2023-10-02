@@ -23,5 +23,10 @@
         "visible_name": "Water Gun",
         "type": "water",
         "category": "special"
+    },
+    "tail_whip": {
+        "visible_name": "Tail Whip",
+        "type": "normal",
+        "category": "status"
     }
 }

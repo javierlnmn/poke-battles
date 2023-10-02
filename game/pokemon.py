@@ -78,7 +78,7 @@ class Pokemon:
             + " / "
             + str(max_hp)
         )
-        
+
         # ansii characters are counted as well
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
@@ -95,15 +95,11 @@ class Pokemon:
             + reset_console_color()
         )
 
-        ascii_art = (
-            set_console_color(self.color)
-            + self.get_ascii_art()
-            + reset_console_ansi_escapes()
-        )
+        ascii_art = self.get_ascii_art_color()
 
         combined_sprite = ascii_art + "\n" + health_indicator + "\n" + health_bar
 
-        return combined_sprite + reset_console_ansi_escapes()
+        return combined_sprite
 
     def get_abilities_list(self):
         return [
@@ -111,7 +107,8 @@ class Pokemon:
             for ability in pokemon_abilities
             if self.abilities.count(ability) > 0
         ]
-        
+
+
 class Ability:
     def __init__(self):
         pass

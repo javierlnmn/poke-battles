@@ -37,6 +37,25 @@
             "ember"
         ]
     },
+    "bulbasaur": {
+        "visible_name": "Bulbasaur",
+        "type": [
+            "plant"
+        ],
+        "color": "green",
+        "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "sp_attack": 65,
+            "sp_defense": 65,
+            "speed": 45
+        },
+        "abilities": [
+            "tackle",
+            "tail_whip"
+        ]
+    },
     "lapras": {
         "visible_name": "Lapras",
         "type": [
