@@ -14,6 +14,8 @@ class Game:
             pokemon_1_attack_list = self.battle.pokemon_1.get_abilities_list()
 
             print(self.battle.get_battle_state() + ('\n') * 2)
+            
+            print('What should '+str(self.battle.pokemon_1)+' do?')
 
             user_attack = questionary.select(
                 "",

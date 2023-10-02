@@ -113,9 +113,20 @@ class Ability:
         pass
 
 
-class Type:
-    def __init__(self):
-        pass
+class Types:
+    type_data = pokemon_types
+
+    @classmethod
+    def get_weaknesses(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get('weak_against', [])
+
+    @classmethod
+    def get_strengths(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get('strong_against', [])
+
+    @classmethod
+    def get_strengths(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get('immune_against', [])
 
 
 def choose_pokemon():
