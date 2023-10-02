@@ -57,11 +57,10 @@ class Pokemon:
         return read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
 
     def get_ascii_art_color(self) -> str:
-        return (
-            set_console_color(self.color)
-            + read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
-            + reset_console_ansi_escapes()
-        )
+        ascii_art = read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
+        lines = ascii_art.split('\n')
+        colored_lines = [f"{set_console_color(self.color)}{line}{reset_console_color()}" for line in lines]
+        return '\n'.join(colored_lines)
 
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
