@@ -25,8 +25,7 @@ pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
 
 class Pokemon:
-    def __init__(self, id, name, visible_name, type, color, stats, abilities):
-        self.id = id
+    def __init__(self, name, visible_name, type, color, stats, abilities):
         self.name = name
         self.visible_name = visible_name
         self.type = type
@@ -37,10 +36,7 @@ class Pokemon:
 
     def __repr__(self) -> str:
         return (
-            "["
-            + str(self.id)
-            + "] "
-            + str(self.name)
+            str(self.name)
             + "\n"
             + str(self.type)
             + "\n"
