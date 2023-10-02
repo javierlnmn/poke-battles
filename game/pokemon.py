@@ -115,20 +115,24 @@ class Pokemon:
             for ability in pokemon_abilities
             if self.abilities.count(ability) > 0
         ]
+        
+class Ability:
+    def __init__(self):
+        pass
 
 
-# def get_pokemon_object_list():
-#   return
+class Type:
+    def __init__(self):
+        pass
 
 
 def choose_pokemon():
     pokemon_list = []
 
-    for id, name in enumerate(pokemon_list_data, start=1):
+    for name in pokemon_list_data:
         pokemon_data = pokemon_list_data[name]
 
         pokemon = Pokemon(
-            id=id,
             name=name,
             visible_name=pokemon_data["visible_name"],
             type=pokemon_data["type"],
@@ -188,7 +192,6 @@ def random_pokemon():
     pokemon_data = pokemon_list_data[selected_pokemon_name]
 
     pokemon = Pokemon(
-        id=pokemon_index,
         name=selected_pokemon_name,
         visible_name=pokemon_data["visible_name"],
         type=pokemon_data["type"],

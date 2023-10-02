@@ -1,22 +1,27 @@
 {
     "tackle": {
         "visible_name": "Tackle",
-        "type": "normal"
+        "type": "normal",
+        "category": "physical"
     },
     "ember": {
         "visible_name": "Ember",
-        "type": "fire"
+        "type": "fire",
+        "category": "special"
     },
     "thunder_shock": {
         "visible_name": "Thunder Shock",
-        "type": "electric"
+        "type": "electric",
+        "category": "special"
     },
     "surf": {
         "visible_name": "Surf",
-        "type": "water"
+        "type": "water",
+        "category": "special"
     },
     "water_gun": {
         "visible_name": "Water Gun",
-        "type": "water"
+        "type": "water",
+        "category": "special"
     }
 }

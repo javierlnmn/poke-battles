@@ -13,9 +13,9 @@ class Game:
         while not self.battle.winner:
             pokemon_1_attack_list = self.battle.pokemon_1.get_abilities_list()
 
-            print(self.battle.get_battle_state() + '\n'*2)
+            print(self.battle.get_battle_state() + ('\n') * 2)
 
-            selected_pokemon_name = questionary.select(
+            user_attack = questionary.select(
                 "",
                 qmark="",
                 choices=pokemon_1_attack_list,  # Use a lambda function

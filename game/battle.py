@@ -15,7 +15,7 @@ class Battle:
     def get_battle_state(self):
         battle_state = "\n".join(
             [
-                + row[0]
+                row[0]
                 + (' ')*15
                 + row[1]
                 for row in zip(
