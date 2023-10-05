@@ -1,10 +1,6 @@
-from game.pokemon import Pokemon
-from utils.ascii_art import (
-    set_console_color,
-    set_console_background,
-    reset_console_ansi_escapes,
-)
+import questionary
 
+from game.pokemon import Pokemon
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
@@ -13,6 +9,7 @@ class Battle:
         self.winner = None
 
     def get_battle_state(self):
+        
         battle_state = "\n".join(
             [
                 row[0]
@@ -26,3 +23,23 @@ class Battle:
         )
         
         return battle_state
+    
+    
+    def play_battle(self):
+        
+        while not self.winner:
+            
+            
+            print(self.get_battle_state() + ('\n') * 2)
+            print('What should '+str(self.pokemon_1)+' do?')
+            
+            pokemon_1_attack_visible_names_list = self.pokemon_1.get_abilities_visible_name_list()
+
+            selected_ability_visible_name = questionary.select(
+                "",
+                choices=pokemon_1_attack_visible_names_list
+            ).ask()
+
+            selected_attack_data = self.pokemon_1.get_ability_data_by_visible_name(selected_ability_visible_name)
+            
+            print(selected_attack_data)

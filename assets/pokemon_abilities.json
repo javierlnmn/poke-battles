@@ -2,31 +2,55 @@
     "tackle": {
         "visible_name": "Tackle",
         "type": "normal",
-        "category": "physical"
+        "category": "physical",
+        "pokemon_affected": "enemy",
+        "damage": ""
     },
     "ember": {
         "visible_name": "Ember",
         "type": "fire",
-        "category": "special"
+        "category": "special",
+        "pokemon_affected": "enemy",
+        "damage": ""
     },
     "thunder_shock": {
         "visible_name": "Thunder Shock",
         "type": "electric",
-        "category": "special"
+        "category": "special",
+        "pokemon_affected": "enemy",
+        "damage": ""
     },
     "surf": {
         "visible_name": "Surf",
         "type": "water",
-        "category": "special"
+        "category": "special",
+        "pokemon_affected": "enemy",
+        "damage": ""
     },
     "water_gun": {
         "visible_name": "Water Gun",
         "type": "water",
-        "category": "special"
+        "category": "special",
+        "pokemon_affected": "enemy",
+        "damage": ""
     },
     "tail_whip": {
         "visible_name": "Tail Whip",
         "type": "normal",
-        "category": "status"
+        "category": "status",
+        "pokemon_affected": "enemy",
+        "effects_multiplier": {
+            "defense": 0.7
+        }
+    },
+    "dragon_dance": {
+        "visible_name": "Dragon Dance",
+        "type": "dragon",
+        "category": "status",
+        "pokemon_affected": "self",
+        "effects_multiplier": {
+            "attack": 1.2,
+            "speed": 1.2
+        }
     }
 }

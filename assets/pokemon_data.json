@@ -74,5 +74,24 @@
             "surf",
             "water_gun"
         ]
+    },
+    "gyarados": {
+        "visible_name": "Gyarados",
+        "type": [
+            "water",
+            "flying"
+        ],
+        "color": "blue",
+        "stats": {
+            "hp": 95,
+            "attack": 125,
+            "defense": 79,
+            "sp_attack": 60,
+            "sp_defense": 100,
+            "speed": 81
+        },
+        "abilities": [
+            "surf"
+        ]
     }
 }

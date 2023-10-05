@@ -1,0 +1,2 @@
+The overall conecpt of the app is to play Pokèmon battles in your command line against the machine.
+It's also possible to add or modify new Pokèmons or abilities by modifying the corresponding JSON files.

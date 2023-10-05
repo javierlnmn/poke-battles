@@ -1,12 +1,13 @@
 from colorama import init
 import clear_screen
+import questionary
 
 import time
 
-from game.game import Game
+# from game.game import Game
 from game.battle import Battle
 from game.pokemon import choose_pokemon, random_pokemon
-from utils.ascii_art import print_full_screen_title_animation, print_full_screen_title
+from utils.ascii_art import print_full_screen_title_animation, print_full_screen_title, get_random_color
 
 
 clear_screen.clear()
@@ -18,43 +19,55 @@ def main():
     # clear screen
     clear_screen.clear()
 
-    print_full_screen_title("Poke - Battles", 'red')
+    print_full_screen_title("Poke - Battles", get_random_color())
     time.sleep(1.5)
     
     clear_screen.clear()
     time.sleep(1)
     
-    # choose gamemode?
+    play_again = True
+    
+    while play_again:
+        
+        selected_pokemon = choose_pokemon()
+        clear_screen.clear()
+        time.sleep(.8)
 
-    selected_pokemon = choose_pokemon()
-    clear_screen.clear()
-    time.sleep(.8)
+        print("You chose " + str(selected_pokemon) + "!")
+        print(selected_pokemon.get_ascii_art_color())
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
 
-    print("You chose " + str(selected_pokemon) + "!")
-    print(selected_pokemon.get_ascii_art_color())
-    time.sleep(1.5)
-    clear_screen.clear()
-    time.sleep(0.8)
 
-    enemy_pokemon = random_pokemon()
-    print("Oh!")
-    time.sleep(1.5)
-    clear_screen.clear()
-    time.sleep(0.8)
+        enemy_pokemon = random_pokemon()
+        print("Oh!")
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
 
-    print("A wild " + str(enemy_pokemon) + " appeared!")
-    print(enemy_pokemon.get_ascii_art_color())
-    time.sleep(1.5)
-    clear_screen.clear()
-    time.sleep(0.8)
+        print("A wild " + str(enemy_pokemon) + " appeared!")
+        print(enemy_pokemon.get_ascii_art_color())
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
 
-    print_full_screen_title_animation("Battle!")
+        print_full_screen_title_animation("Battle!")
 
-    current_battle = Battle(selected_pokemon, enemy_pokemon)
-
-    game = Game(current_battle)
-
-    game.play_battle_pve()
+        current_battle = Battle(selected_pokemon, enemy_pokemon)
+        
+        current_battle.play_battle()
+        
+        clear_screen.clear()
+        time.sleep(0.8)
+        
+        play_again = questionary.confirm(
+            "Do you want to play again?"
+        ).ask()
+        
+        clear_screen.clear()
+        time.sleep(0.8)
+        
 
 
 def test_battle_state_art():
@@ -62,9 +75,7 @@ def test_battle_state_art():
     pokemon_2 = random_pokemon()
     current_battle = Battle(pokemon_1, pokemon_2)
 
-    game = Game(current_battle)
-
-    print(game.battle.get_battle_state())
+    current_battle.play_battle()
     time.sleep(5)
 
 

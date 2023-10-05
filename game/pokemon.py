@@ -58,9 +58,12 @@ class Pokemon:
 
     def get_ascii_art_color(self) -> str:
         ascii_art = read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
-        lines = ascii_art.split('\n')
-        colored_lines = [f"{set_console_color(self.color)}{line}{reset_console_color()}" for line in lines]
-        return '\n'.join(colored_lines)
+        lines = ascii_art.split("\n")
+        colored_lines = [
+            f"{set_console_color(self.color)}{line}{reset_console_color()}"
+            for line in lines
+        ]
+        return "\n".join(colored_lines)
 
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
@@ -102,10 +105,20 @@ class Pokemon:
 
     def get_abilities_list(self):
         return [
-            pokemon_abilities[ability]["visible_name"]
+            {ability: pokemon_abilities[ability]}
             for ability in pokemon_abilities
             if self.abilities.count(ability) > 0
         ]
+
+    def get_abilities_visible_name_list(self):
+        abilities = self.get_abilities_list()
+        return [
+            attack_data[list(attack_data.keys())[0]]["visible_name"]
+            for attack_data in abilities
+        ]
+        
+    def get_ability_data_by_visible_name(self, ability):
+        return self.get_abilities_list()[self.get_abilities_visible_name_list().index(ability)]
 
 
 class Ability:
@@ -118,15 +131,15 @@ class Types:
 
     @classmethod
     def get_weaknesses(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get('weak_against', [])
+        return cls.type_data.get(pokemon_type, {}).get("weak_against", [])
 
     @classmethod
     def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get('strong_against', [])
+        return cls.type_data.get(pokemon_type, {}).get("strong_against", [])
 
     @classmethod
     def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get('immune_against', [])
+        return cls.type_data.get(pokemon_type, {}).get("immune_against", [])
 
 
 def choose_pokemon():

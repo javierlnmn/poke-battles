@@ -1,24 +1,20 @@
-import questionary
+# import questionary
 
-from game.battle import Battle
+# from game.battle import Battle
 
 
-class Game:
-    def __init__(self, battle: Battle):
-        self.gamemode = None  # probably will use this in the future
-        # pvp or pve
-        self.battle = battle
+# class Game:
+#     def __init__(self, battle: Battle):
+#         self.gamemode = None  # probably will use this in the future for pvp or pve
+#         self.battle = battle
 
-    def play_battle_pve(self):
-        while not self.battle.winner:
-            pokemon_1_attack_list = self.battle.pokemon_1.get_abilities_list()
+#     def play_battle_pve(self):
+#         self.battle.play()
 
-            print(self.battle.get_battle_state() + ('\n') * 2)
-            
-            print('What should '+str(self.battle.pokemon_1)+' do?')
 
-            user_attack = questionary.select(
-                "",
-                qmark="",
-                choices=pokemon_1_attack_list,  # Use a lambda function
-            ).ask()
+# class Player:
+    
+#     def __init__(self, type, selected_pokemon, win_count):
+#         self.type = type
+#         self.selected_pokemon = selected_pokemon
+#         self.win_count = win_count
