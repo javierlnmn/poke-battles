@@ -6,6 +6,7 @@ import time
 
 from utils.general import read_file_data, add_file_data, is_positive_integer
 from utils.pokemon import get_pokemon_data_by_name
+from utils.ascii_art import save_pokemon_ascii_art
 from config.config import (
     POKEMON_TYPES_FILE_PATH,
     POKEMON_ABILITIES_FILE_PATH,
@@ -18,13 +19,10 @@ def add_new_pokemon():
     pokemon_types = get_pokemon_type()
     color = get_color()
     stats = get_stats()
-    # ascii_art = get_ascii_art()
+    ascii_art = get_ascii_art()
 
     time.sleep(0.5)
-    cofirm_add_pokemon = questionary.confirm(
-        "Do you want to add " + visible_name + " to the Pokèmon list?",
-        instruction="Press 'n' to cancel the process",
-    ).ask()
+    cofirm_add_pokemon = questionary.confirm("Do you want to add " + visible_name + " to the Pokèmon list?").ask()
 
     if cofirm_add_pokemon:
         pokemon_data = {
@@ -36,6 +34,10 @@ def add_new_pokemon():
         }
 
         add_file_data(POKEMON_DATA_FILE_PATH, identifyer_name, pokemon_data)
+        save_pokemon_ascii_art(ascii_art, identifyer_name) 
+        
+        time.sleep(.8)
+        print('\n\n\n'+visible_name+' saved.')
 
 
 def get_name():
@@ -122,7 +124,7 @@ def get_color():
         print(color.capitalize())
 
         if questionary.confirm("Is this correct?").ask():
-            return str.upper(color)
+            return str.lower(color)
 
 
 def get_stats():
@@ -160,7 +162,16 @@ def get_stats():
 
 
 def get_ascii_art():
-    pass
+    if not questionary.confirm("Do you have the Pokèmon's ascii art?").ask():
+        print("It is recommended to save the Pokèmon's ascii art for the game to render the battle correctly. Please considering adding it in the future (.assets/asii_art/pokemon_ascii/)")
+        return
+    
+    while True:
+        
+        pokemon_ascii_art = questionary.text("Please paste the ascii art (35 lines 70 characters long recommended):").ask()
+        
+        if questionary.confirm("Is this correct?").ask():
+            return pokemon_ascii_art
 
 
 def add_new_ability():

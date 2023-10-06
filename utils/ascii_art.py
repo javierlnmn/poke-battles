@@ -6,6 +6,9 @@ import inspect
 import random
 import shutil
 import time
+import os
+
+from config.config import POKEMON_ASCII_ART_PATH
 
 
 def set_console_color(color):
@@ -65,3 +68,25 @@ def print_full_screen_title_animation(title_text, font="slant"):
         time.sleep(.5)
         clear_screen.clear()
         time.sleep(.5)
+        
+def save_pokemon_ascii_art(ascii_art, pokemon_name):
+
+    file_name = pokemon_name
+    file_content = ascii_art     
+    
+    try:
+    
+        if not os.path.exists(POKEMON_ASCII_ART_PATH):
+            os.makedirs(POKEMON_ASCII_ART_PATH)
+
+        file_path = os.path.join(POKEMON_ASCII_ART_PATH, file_name)
+        
+        with open(file_path, "w") as file:
+            file.write(file_content)
+            
+        print("Ascii art saved to file "+file_path+".")
+            
+    except OSError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")

@@ -18,6 +18,7 @@ from config.config import (
     POKEMON_TYPES_FILE_PATH,
     POKEMON_ABILITIES_FILE_PATH,
     POKEMON_ASCII_ART_PATH,
+    DEFAULT_HEALTH_BAR_LENGTH
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
@@ -70,7 +71,7 @@ class Pokemon:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
         health_percentage = (current_hp / max_hp) * 100
-        bar_length = int(health_percentage / 2)
+        bar_length = DEFAULT_HEALTH_BAR_LENGTH
 
         health_indicator = (
             "HP: "
@@ -85,14 +86,14 @@ class Pokemon:
         # ansii characters are counted as well
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
-        health_indicator += (" ") * (52 - len(unstyled_health_indicator))
+        health_indicator += (" ") * ((DEFAULT_HEALTH_BAR_LENGTH+2) - len(unstyled_health_indicator))
 
         health_bar = (
             set_console_color(self.color)
             + "["
             + reset_console_color()
             + "#" * bar_length
-            + "-" * (48 - bar_length)
+            + "-" * (68 - bar_length)
             + set_console_color(self.color)
             + "]"
             + reset_console_color()

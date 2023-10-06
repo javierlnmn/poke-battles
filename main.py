@@ -16,9 +16,13 @@ clear_screen.clear()
 def main():
     # initialize colorama
     init()
-    # clear screen
+    
     clear_screen.clear()
-
+    print("It's recommended to play the game fullscreen or in a big window.")
+    time.sleep(2)
+    
+    clear_screen.clear()
+    time.sleep(1)
     print_full_screen_title("Poke - Battles", get_random_color())
     time.sleep(1.5)
     
@@ -80,4 +84,4 @@ def test_battle_state_art():
 
 
 if __name__ == "__main__":
-    main()
+    test_battle_state_art()

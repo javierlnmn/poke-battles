@@ -2,37 +2,52 @@
     "tackle": {
         "visible_name": "Tackle",
         "type": "normal",
-        "category": "physical",
+        "category": "attack",
         "pokemon_affected": "enemy",
-        "damage": ""
+        "damage": {
+            "attack": 40
+        },
+        "accuracy": 98
     },
     "ember": {
         "visible_name": "Ember",
         "type": "fire",
-        "category": "special",
+        "category": "attack",
         "pokemon_affected": "enemy",
-        "damage": ""
+        "damage": {
+            "sp_attack": 40
+        },
+        "accuracy": 98
     },
     "thunder_shock": {
         "visible_name": "Thunder Shock",
         "type": "electric",
-        "category": "special",
+        "category": "attack",
         "pokemon_affected": "enemy",
-        "damage": ""
+        "damage": {
+            "sp_attack": 40
+        },
+        "accuracy": 98
     },
     "surf": {
         "visible_name": "Surf",
         "type": "water",
-        "category": "special",
+        "category": "attack",
         "pokemon_affected": "enemy",
-        "damage": ""
+        "damage": {
+            "sp_attack": 90
+        },
+        "accuracy": 98
     },
     "water_gun": {
         "visible_name": "Water Gun",
         "type": "water",
-        "category": "special",
+        "category": "attack",
         "pokemon_affected": "enemy",
-        "damage": ""
+        "damage": {
+            "sp_attack": 40
+        },
+        "accuracy": 98
     },
     "tail_whip": {
         "visible_name": "Tail Whip",
@@ -40,8 +55,9 @@
         "category": "status",
         "pokemon_affected": "enemy",
         "effects_multiplier": {
-            "defense": 0.7
-        }
+            "defense": 0.8
+        },
+        "accuracy": 98
     },
     "dragon_dance": {
         "visible_name": "Dragon Dance",
@@ -51,6 +67,7 @@
         "effects_multiplier": {
             "attack": 1.2,
             "speed": 1.2
-        }
+        },
+        "accuracy": 100
     }
 }

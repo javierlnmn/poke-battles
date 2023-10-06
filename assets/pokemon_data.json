@@ -100,7 +100,7 @@
             "water",
             "ice"
         ],
-        "color": "BLUE",
+        "color": "white",
         "stats": {
             "hp": 90,
             "attack": 70,
@@ -117,7 +117,7 @@
             "ghost",
             "poison"
         ],
-        "color": "MAGENTA",
+        "color": "magenta",
         "stats": {
             "hp": 30,
             "attack": 35,
@@ -125,6 +125,23 @@
             "sp_attack": 100,
             "sp_defense": 35,
             "speed": 80
+        },
+        "abilities": []
+    },
+    "scizor": {
+        "visible_name": "Scizor",
+        "type": [
+            "bug",
+            "steel"
+        ],
+        "color": "red",
+        "stats": {
+            "hp": 70,
+            "attack": 130,
+            "defense": 100,
+            "sp_attack": 55,
+            "sp_defense": 80,
+            "speed": 65
         },
         "abilities": []
     }
