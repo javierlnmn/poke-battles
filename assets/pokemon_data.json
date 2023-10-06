@@ -93,5 +93,39 @@
         "abilities": [
             "surf"
         ]
+    },
+    "dewgong": {
+        "visible_name": "Dewgong",
+        "type": [
+            "water",
+            "ice"
+        ],
+        "color": "BLUE",
+        "stats": {
+            "hp": 90,
+            "attack": 70,
+            "defense": 80,
+            "sp_attack": 70,
+            "sp_defense": 95,
+            "speed": 70
+        },
+        "abilities": []
+    },
+    "gastly": {
+        "visible_name": "Gastly",
+        "type": [
+            "ghost",
+            "poison"
+        ],
+        "color": "MAGENTA",
+        "stats": {
+            "hp": 30,
+            "attack": 35,
+            "defense": 30,
+            "sp_attack": 100,
+            "sp_defense": 35,
+            "speed": 80
+        },
+        "abilities": []
     }
 }

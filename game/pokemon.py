@@ -4,7 +4,8 @@ import time
 
 import random
 
-from utils.general import read_file_data, read_ascii_art
+from utils.general import read_file_data
+from utils.pokemon import read_ascii_art
 from utils.ascii_art import (
     set_console_color,
     set_console_style,
