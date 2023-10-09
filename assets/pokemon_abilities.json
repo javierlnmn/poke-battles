@@ -3,7 +3,13 @@
         "visible_name": "Tackle",
         "type": "normal",
         "category": "attack",
-        "pokemon_affected": "enemy",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 40
+                }
+            }
+        },
         "damage": {
             "attack": 40
         },
@@ -13,9 +19,17 @@
         "visible_name": "Ember",
         "type": "fire",
         "category": "attack",
-        "pokemon_affected": "enemy",
-        "damage": {
-            "sp_attack": 40
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 40
+                },
+                "status": {
+                    "burning": {
+                        "accuracy": 20
+                    }
+                }
+            }
         },
         "accuracy": 98
     },
@@ -23,9 +37,17 @@
         "visible_name": "Thunder Shock",
         "type": "electric",
         "category": "attack",
-        "pokemon_affected": "enemy",
-        "damage": {
-            "sp_attack": 40
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 40
+                },
+                "status": {
+                    "paralyzing": {
+                        "accuracy": 30
+                    }
+                }
+            }
         },
         "accuracy": 98
     },
@@ -33,9 +55,12 @@
         "visible_name": "Surf",
         "type": "water",
         "category": "attack",
-        "pokemon_affected": "enemy",
-        "damage": {
-            "sp_attack": 90
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 90
+                }
+            }
         },
         "accuracy": 98
     },
@@ -43,9 +68,12 @@
         "visible_name": "Water Gun",
         "type": "water",
         "category": "attack",
-        "pokemon_affected": "enemy",
-        "damage": {
-            "sp_attack": 40
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 40
+                }
+            }
         },
         "accuracy": 98
     },
@@ -53,9 +81,12 @@
         "visible_name": "Tail Whip",
         "type": "normal",
         "category": "status",
-        "pokemon_affected": "enemy",
-        "effects_multiplier": {
-            "defense": 0.8
+        "pokemon_affected": {
+            "enemy": {
+                "effect": {
+                    "defense": 0.8
+                }
+            }
         },
         "accuracy": 98
     },
@@ -63,11 +94,135 @@
         "visible_name": "Dragon Dance",
         "type": "dragon",
         "category": "status",
-        "pokemon_affected": "self",
-        "effects_multiplier": {
-            "attack": 1.2,
-            "speed": 1.2
+        "pokemon_affected": {
+            "self": {
+                "effect": {
+                    "attack": 1.2,
+                    "speed": 1.2
+                }
+            }
         },
         "accuracy": 100
+    },
+    "icy_wind": {
+        "visible_name": "Icy Wind",
+        "type": "ice",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 60
+                },
+                "status": {
+                    "freezing": {
+                        "accuracy": 20
+                    }
+                }
+            }
+        },
+        "accuracy": 90
+    },
+    "take_down": {
+        "visible_name": "Take Down",
+        "type": "normal",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 60
+                }
+            },
+            "self": {
+                "damage": {
+                    "sp_attack": 10
+                }
+            }
+        },
+        "accuracy": 80
+    },
+    "ice_beam": {
+        "visible_name": "Ice Beam",
+        "type": "ice",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 95
+                },
+                "status": {
+                    "freezing": {
+                        "accuracy": 30
+                    }
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "lick": {
+        "visible_name": "Lick",
+        "type": "ghost",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 40
+                },
+                "status": {
+                    "paralyzing": {
+                        "accuracy": 20
+                    }
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "acid_spray": {
+        "visible_name": "Acid Spray",
+        "type": "poison",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 50
+                },
+                "status": {
+                    "poisoning": {
+                        "accuracy": 20
+                    }
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "fury_cutter": {
+        "visible_name": "Fury Cutter",
+        "type": "bug",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 40
+                }
+            },
+            "self": {
+                "effect": {
+                    "attack": 1.25
+                }
+            }
+        },
+        "accuracy": 90
+    },
+    "metal_claw": {
+        "visible_name": "Metal Claw",
+        "type": "steel",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 55
+                }
+            }
+        },
+        "accuracy": 90
     }
 }

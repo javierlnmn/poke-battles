@@ -72,7 +72,8 @@
         },
         "abilities": [
             "surf",
-            "water_gun"
+            "water_gun",
+            "ice_beam"
         ]
     },
     "gyarados": {
@@ -109,7 +110,10 @@
             "sp_defense": 95,
             "speed": 70
         },
-        "abilities": []
+        "abilities": [
+            "water_gun",
+            "icy_wind"
+        ]
     },
     "gastly": {
         "visible_name": "Gastly",
@@ -126,7 +130,11 @@
             "sp_defense": 35,
             "speed": 80
         },
-        "abilities": []
+        "abilities": [
+            "tackle",
+            "lick",
+            "acid_spray"
+        ]
     },
     "scizor": {
         "visible_name": "Scizor",
@@ -143,6 +151,9 @@
             "sp_defense": 80,
             "speed": 65
         },
-        "abilities": []
+        "abilities": [
+            "fury_cutter",
+            "metal_claw"
+        ]
     }
 }

@@ -1,4 +1,7 @@
 import questionary
+import clear_screen
+
+import time
 
 from game.pokemon import Pokemon
 
@@ -29,6 +32,8 @@ class Battle:
         
         while not self.winner:
             
+            clear_screen.clear()
+            time.sleep(1)
             
             print(self.get_battle_state() + ('\n') * 2)
             print('What should '+str(self.pokemon_1)+' do?')
@@ -42,4 +47,3 @@ class Battle:
 
             selected_attack_data = self.pokemon_1.get_ability_data_by_visible_name(selected_ability_visible_name)
             
-            print(selected_attack_data)
