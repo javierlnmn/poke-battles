@@ -4,7 +4,7 @@ import clear_screen
 import time
 
 from game.pokemon import Pokemon
-from config.config import DEFAULT_STARTING_TURN
+from config.config import DEFAULT_STARTING_TURN, DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
@@ -18,7 +18,7 @@ class Battle:
         battle_state = "\n".join(
             [
                 row[0]
-                + (' ')*15
+                + (' ')*DEFAULT_SPACE_BETWEEN_SPRITES
                 + row[1]
                 for row in zip(
                     self.pokemon_1.get_visual_stats_sprite().split("\n"),
@@ -30,7 +30,7 @@ class Battle:
         return battle_state
     
     def switch_turn(self):
-        return 3 - self.turn
+        self.turn = 3 - self.turn
     
     
     def play_battle(self):
@@ -38,7 +38,7 @@ class Battle:
         while not self.winner:
             
             clear_screen.clear()
-            time.sleep(1)
+            time.sleep(.5)
             
             if self.turn == 1:
             
@@ -52,15 +52,30 @@ class Battle:
                     choices=pokemon_1_attack_visible_names_list
                 ).ask()
 
-                selected_attack = self.pokemon_1.get_ability_data_by_visible_name(selected_ability_visible_name)
+                selected_attack = self.pokemon_1.get_ability_by_visible_name(selected_ability_visible_name)
+                clear_screen.clear()
+                time.sleep(.8)
+                
+                print(str(self.pokemon_1)+" used "+selected_attack.visible_name+"!")
+                time.sleep(1.2)
+                clear_screen.clear()
                 
                 self.pokemon_2.current_hp -= self.calculate_damage(self.pokemon_1, selected_attack, self.pokemon_2)
                 
             elif self.turn == 2:
                 
-                selected_attack = self.pokemon_1.pick_random_ability()
+                print(self.get_battle_state() + ('\n'))
                 
-                pass
+                selected_attack = self.pokemon_2.pick_random_ability()
+                
+                time.sleep(.8)
+                
+                print((" " * (DEFAULT_HEALTH_BAR_LENGTH + DEFAULT_SPACE_BETWEEN_SPRITES)) + str(self.pokemon_2)+" used "+selected_attack.visible_name+"!")
+                time.sleep(1.2)
+                clear_screen.clear()
+                
+                self.pokemon_1.current_hp -= self.calculate_damage(self.pokemon_1, selected_attack, self.pokemon_2)
+
             
             if self.pokemon_1.current_hp <= 0:
                 self.winner = self.pokemon_2
@@ -70,5 +85,4 @@ class Battle:
             self.switch_turn()
             
     def calculate_damage(self, attacker, ability, reciever):
-        # damage = (MovePower * (AttackStat / DefenseStat)) * TypeModifier
         pass

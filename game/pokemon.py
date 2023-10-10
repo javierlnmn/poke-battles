@@ -10,7 +10,6 @@ from utils.ascii_art import (
     set_console_color,
     set_console_style,
     reset_console_ansi_escapes,
-    reset_console_style,
     reset_console_color,
 )
 from config.config import (
@@ -18,12 +17,13 @@ from config.config import (
     POKEMON_TYPES_FILE_PATH,
     POKEMON_ABILITIES_FILE_PATH,
     POKEMON_ASCII_ART_PATH,
-    DEFAULT_HEALTH_BAR_LENGTH
+    DEFAULT_HEALTH_BAR_LENGTH,
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
 pokemon_abilities = read_file_data(POKEMON_ABILITIES_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
+
 
 class Types:
     type_data = pokemon_types
@@ -42,7 +42,6 @@ class Types:
 
 
 class Ability:
-    
     def __init__(self, name, visible_name, type, category, pokemon_affected, accuracy):
         self.name = name
         self.visible_name = visible_name
@@ -51,9 +50,7 @@ class Ability:
         self.pokemon_affected = pokemon_affected
 
 
-
 class Pokemon:
-    
     def __init__(self, name, visible_name, type, color, stats, abilities):
         self.name = name
         self.visible_name = visible_name
@@ -64,11 +61,11 @@ class Pokemon:
         self.abilities = [
             Ability(
                 ability,
-                pokemon_abilities[ability]['visible_name'],
-                pokemon_abilities[ability]['type'],
-                pokemon_abilities[ability]['category'],
-                pokemon_abilities[ability]['pokemon_affected'],
-                pokemon_abilities[ability]['accuracy'],
+                pokemon_abilities[ability]["visible_name"],
+                pokemon_abilities[ability]["type"],
+                pokemon_abilities[ability]["category"],
+                pokemon_abilities[ability]["pokemon_affected"],
+                pokemon_abilities[ability]["accuracy"],
             )
             for ability in abilities
         ]
@@ -107,8 +104,8 @@ class Pokemon:
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
-        health_percentage = (current_hp / max_hp) * 100
-        bar_length = DEFAULT_HEALTH_BAR_LENGTH
+        health_percentage = int((current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH)
+                                
 
         health_indicator = (
             "HP: "
@@ -123,14 +120,16 @@ class Pokemon:
         # ansii characters are counted as well
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
-        health_indicator += (" ") * ((DEFAULT_HEALTH_BAR_LENGTH+2) - len(unstyled_health_indicator))
+        health_indicator += (" ") * (
+            (DEFAULT_HEALTH_BAR_LENGTH + 2) - len(unstyled_health_indicator)
+        )
 
         health_bar = (
             set_console_color(self.color)
             + "["
             + reset_console_color()
-            + "#" * bar_length
-            + "-" * (68 - bar_length)
+            + "#" * health_percentage
+            + "-" * (65 - health_percentage)
             + set_console_color(self.color)
             + "]"
             + reset_console_color()
@@ -142,18 +141,24 @@ class Pokemon:
 
         return combined_sprite
 
-    def get_abilities_visible_name_list(self):
+    def get_abilities_visible_name_list(self) -> list:
         return [ability.visible_name for ability in self.abilities]
-        
-    def get_ability_data_by_visible_name(self, ability_visible_name):
-        return next((ability for ability in self.abilities if ability.visible_name == ability_visible_name), None)
+
+    def get_ability_by_visible_name(self, ability_visible_name) -> Ability:
+        return next(
+            (
+                ability
+                for ability in self.abilities
+                if ability.visible_name == ability_visible_name
+            ),
+            None,
+        )
 
     def pick_random_ability(self) -> Ability:
-        pass
+        return random.choice(self.abilities)
 
 
-
-def choose_pokemon():
+def user_choose_pokemon() -> Pokemon:
     pokemon_list = []
 
     for name in pokemon_list_data:
@@ -212,7 +217,7 @@ def choose_pokemon():
     return selected_pokemon
 
 
-def random_pokemon():
+def random_pokemon() -> Pokemon:
     pokemon_list_names = list(pokemon_list_data.keys())
     pokemon_index = random.randint(0, len(pokemon_list_data) - 1)
     selected_pokemon_name = pokemon_list_names[pokemon_index]

@@ -6,7 +6,7 @@ import time
 
 # from game.game import Game
 from game.battle import Battle
-from game.pokemon import choose_pokemon, random_pokemon
+from game.pokemon import user_choose_pokemon, random_pokemon
 from utils.ascii_art import print_full_screen_title_animation, print_full_screen_title, get_random_color
 
 
@@ -33,7 +33,7 @@ def main():
     
     while play_again:
         
-        selected_pokemon = choose_pokemon()
+        selected_pokemon = user_choose_pokemon()
         clear_screen.clear()
         time.sleep(.8)
 
@@ -83,4 +83,4 @@ def test_battle_state_art():
 
 
 if __name__ == "__main__":
-    main()
+    test_battle_state_art()
