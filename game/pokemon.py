@@ -25,8 +25,35 @@ pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
 pokemon_abilities = read_file_data(POKEMON_ABILITIES_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
+class Types:
+    type_data = pokemon_types
+
+    @classmethod
+    def get_weaknesses(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get("weak_against", [])
+
+    @classmethod
+    def get_strengths(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get("strong_against", [])
+
+    @classmethod
+    def get_strengths(cls, pokemon_type):
+        return cls.type_data.get(pokemon_type, {}).get("immune_against", [])
+
+
+class Ability:
+    
+    def __init__(self, name, visible_name, type, category, pokemon_affected, accuracy):
+        self.name = name
+        self.visible_name = visible_name
+        self.type = type
+        self.category = category
+        self.pokemon_affected = pokemon_affected
+
+
 
 class Pokemon:
+    
     def __init__(self, name, visible_name, type, color, stats, abilities):
         self.name = name
         self.visible_name = visible_name
@@ -34,7 +61,17 @@ class Pokemon:
         self.color = color
         self.stats = stats
         self.current_hp = int(stats["hp"])
-        self.abilities = abilities
+        self.abilities = [
+            Ability(
+                ability,
+                pokemon_abilities[ability]['visible_name'],
+                pokemon_abilities[ability]['type'],
+                pokemon_abilities[ability]['category'],
+                pokemon_abilities[ability]['pokemon_affected'],
+                pokemon_abilities[ability]['accuracy'],
+            )
+            for ability in abilities
+        ]
 
     def __repr__(self) -> str:
         return (
@@ -105,43 +142,15 @@ class Pokemon:
 
         return combined_sprite
 
-    def get_abilities_list(self):
-        return [
-            {ability: pokemon_abilities[ability]}
-            for ability in pokemon_abilities
-            if self.abilities.count(ability) > 0
-        ]
-
     def get_abilities_visible_name_list(self):
-        abilities = self.get_abilities_list()
-        return [
-            attack_data[list(attack_data.keys())[0]]["visible_name"]
-            for attack_data in abilities
-        ]
+        return [ability.visible_name for ability in self.abilities]
         
-    def get_ability_data_by_visible_name(self, ability):
-        return self.get_abilities_list()[self.get_abilities_visible_name_list().index(ability)]
+    def get_ability_data_by_visible_name(self, ability_visible_name):
+        return next((ability for ability in self.abilities if ability.visible_name == ability_visible_name), None)
 
-
-class Ability:
-    def __init__(self):
+    def pick_random_ability(self) -> Ability:
         pass
 
-
-class Types:
-    type_data = pokemon_types
-
-    @classmethod
-    def get_weaknesses(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("weak_against", [])
-
-    @classmethod
-    def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("strong_against", [])
-
-    @classmethod
-    def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("immune_against", [])
 
 
 def choose_pokemon():

@@ -134,7 +134,7 @@
             },
             "self": {
                 "damage": {
-                    "sp_attack": 10
+                    "sp_attack": 4
                 }
             }
         },

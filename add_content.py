@@ -163,7 +163,7 @@ def get_stats():
 
 def get_ascii_art():
     if not questionary.confirm("Do you have the Pokèmon's ascii art?").ask():
-        print("It is recommended to save the Pokèmon's ascii art for the game to render the battle correctly. Please considering adding it in the future (.assets/asii_art/pokemon_ascii/)")
+        print("It is recommended to save the Pokèmon's ascii art for the game to render the battle correctly. Please considering adding it in the future (.assets/ascii_art/pokemon_ascii/)")
         return
     
     while True:

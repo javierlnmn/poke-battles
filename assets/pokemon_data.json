@@ -155,5 +155,22 @@
             "fury_cutter",
             "metal_claw"
         ]
+    },
+    "charizard": {
+        "visible_name": "Charizard",
+        "type": [
+            "fire",
+            "flying"
+        ],
+        "color": "red",
+        "stats": {
+            "hp": 78,
+            "attack": 84,
+            "defense": 78,
+            "sp_attack": 109,
+            "sp_defense": 85,
+            "speed": 100
+        },
+        "abilities": []
     }
 }

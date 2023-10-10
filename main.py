@@ -78,7 +78,6 @@ def test_battle_state_art():
     pokemon_1 = random_pokemon()
     pokemon_2 = random_pokemon()
     current_battle = Battle(pokemon_1, pokemon_2)
-
     current_battle.play_battle()
     time.sleep(5)
 
