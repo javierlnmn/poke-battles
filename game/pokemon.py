@@ -5,7 +5,7 @@ import time
 import random
 
 from utils.general import read_file_data
-from utils.pokemon import read_ascii_art
+from utils.pokemon import get_pokemon_ascii_art
 from utils.ascii_art import (
     set_console_color,
     set_console_style,
@@ -16,8 +16,8 @@ from config.config import (
     POKEMON_DATA_FILE_PATH,
     POKEMON_TYPES_FILE_PATH,
     POKEMON_ABILITIES_FILE_PATH,
-    POKEMON_ASCII_ART_PATH,
-    DEFAULT_HEALTH_BAR_LENGTH,
+    POKEMON_IMAGES_PATH,
+    DEFAULT_SPRITE_SIZE,
 )
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
@@ -90,10 +90,10 @@ class Pokemon:
         )
 
     def get_ascii_art(self) -> str:
-        return read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
+        return get_pokemon_ascii_art(POKEMON_IMAGES_PATH, self.name)
 
     def get_ascii_art_color(self) -> str:
-        ascii_art = read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
+        ascii_art = get_pokemon_ascii_art(POKEMON_IMAGES_PATH, self.name)
         lines = ascii_art.split("\n")
         colored_lines = [
             f"{set_console_color(self.color)}{line}{reset_console_color()}"
@@ -104,7 +104,7 @@ class Pokemon:
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
-        health_percentage = int((current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH)
+        health_percentage = int((current_hp / max_hp) * DEFAULT_SPRITE_SIZE)
                                 
 
         health_indicator = (
@@ -121,7 +121,7 @@ class Pokemon:
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
         health_indicator += (" ") * (
-            (DEFAULT_HEALTH_BAR_LENGTH + 2) - len(unstyled_health_indicator)
+            (DEFAULT_SPRITE_SIZE + 2) - len(unstyled_health_indicator)
         )
 
         health_bar = (

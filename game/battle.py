@@ -4,7 +4,7 @@ import clear_screen
 import time
 
 from game.pokemon import Pokemon
-from config.config import DEFAULT_STARTING_TURN, DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
+from config.config import DEFAULT_STARTING_TURN, DEFAULT_SPRITE_SIZE, DEFAULT_SPACE_BETWEEN_SPRITES
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
@@ -70,7 +70,7 @@ class Battle:
                 
                 time.sleep(.8)
                 
-                print((" " * (DEFAULT_HEALTH_BAR_LENGTH + DEFAULT_SPACE_BETWEEN_SPRITES)) + str(self.pokemon_2)+" used "+selected_attack.visible_name+"!")
+                print((" " * (DEFAULT_SPRITE_SIZE + DEFAULT_SPACE_BETWEEN_SPRITES)) + str(self.pokemon_2)+" used "+selected_attack.visible_name+"!")
                 time.sleep(1.2)
                 clear_screen.clear()
                 
