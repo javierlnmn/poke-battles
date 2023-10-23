@@ -60,7 +60,7 @@ class Battle:
                 time.sleep(1.2)
                 clear_screen.clear()
                 
-                self.pokemon_2.current_hp -= self.calculate_damage(self.pokemon_1, selected_attack, self.pokemon_2)
+                self.use_ability(self.pokemon_1, selected_attack, self.pokemon_2)
                 
             elif self.turn == 2:
                 
@@ -74,7 +74,7 @@ class Battle:
                 time.sleep(1.2)
                 clear_screen.clear()
                 
-                self.pokemon_1.current_hp -= self.calculate_damage(self.pokemon_1, selected_attack, self.pokemon_2)
+                self.use_ability(self.pokemon_2, selected_attack, self.pokemon_1)
 
             
             if self.pokemon_1.current_hp <= 0:
@@ -84,5 +84,12 @@ class Battle:
 
             self.switch_turn()
             
-    def calculate_damage(self, attacker, ability, reciever):
+    def use_ability(self, attacker, ability, reciever):
+        print(attacker)
+        print('\n')
+        print(ability.pokemon_affected)
+        print('\n')
+        print(reciever)
+        print('\n')
+        time.sleep(8)
         pass
