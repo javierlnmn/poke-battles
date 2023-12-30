@@ -83,4 +83,4 @@ def test_battle_state_art():
 
 
 if __name__ == "__main__":
-    main()
+    test_battle_state_art()

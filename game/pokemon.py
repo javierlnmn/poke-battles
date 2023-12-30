@@ -48,6 +48,17 @@ class Ability:
         self.type = type
         self.category = category
         self.pokemon_affected = pokemon_affected
+    
+    def __str__(self) -> str:
+        return (
+            str(self.name)
+            + "\n"
+            + str(self.type)
+            + "\n"
+            + str(self.category)
+            + "\n"
+            + str(self.pokemon_affected)
+        )
 
 
 class Pokemon:

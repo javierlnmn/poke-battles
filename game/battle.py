@@ -3,7 +3,7 @@ import clear_screen
 
 import time
 
-from game.pokemon import Pokemon
+from game.pokemon import Pokemon, Types
 from config.config import DEFAULT_STARTING_TURN, DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
 
 class Battle:
@@ -85,11 +85,22 @@ class Battle:
             self.switch_turn()
             
     def use_ability(self, attacker, ability, reciever):
-        print(attacker)
-        print('\n')
-        print(ability.pokemon_affected)
-        print('\n')
-        print(reciever)
-        print('\n')
-        time.sleep(8)
+
+        if ('enemy' in ability.pokemon_affected):
+        
+            print(ability.pokemon_affected['enemy'])
+
+        if ('self' in ability.pokemon_affected):
+
+            print(ability.pokemon_affected['self'])
+
+        # print(attacker)
+        # print('\n')
+        # print(ability)
+        # print('\n')
+        # print(reciever)
+        # print('\n')
+        # print(Types.get_weaknesses(ability.type))
+        time.sleep(15)
+
         pass
