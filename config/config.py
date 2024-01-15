@@ -8,4 +8,3 @@ POKEMON_ABILITIES_FILE_PATH = "assets/pokemon_abilities.json"
 # Game variables
 DEFAULT_HEALTH_BAR_LENGTH = 70 # The recommended sprite length
 DEFAULT_SPACE_BETWEEN_SPRITES = 15 # The space between sprites in a battle
-DEFAULT_STARTING_TURN = 1 # 1 for the user, 2 for the machine

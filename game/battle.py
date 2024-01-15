@@ -4,14 +4,16 @@ import clear_screen
 import time
 
 from game.pokemon import Pokemon, Types
-from config.config import DEFAULT_STARTING_TURN, DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
+from config.config import DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
         self.pokemon_1 = pokemon_1
         self.pokemon_2 = pokemon_2
-        self.turn = DEFAULT_STARTING_TURN
         self.winner = None
+        self.starting_pokemon = pokemon_1 if pokemon_1.stats['speed'] > pokemon_2.stats['speed'] else pokemon_2
+        self.turn = 1 if self.starting_pokemon is pokemon_1 else 2
+
 
     def get_battle_state(self):
         
@@ -29,9 +31,6 @@ class Battle:
         
         return battle_state
     
-    def switch_turn(self):
-        self.turn = 3 - self.turn
-    
     
     def play_battle(self):
         
@@ -39,7 +38,7 @@ class Battle:
             
             clear_screen.clear()
             time.sleep(.5)
-            
+
             if self.turn == 1:
             
                 print(self.get_battle_state() + ('\n') * 2)
