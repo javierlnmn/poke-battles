@@ -80,6 +80,7 @@ class Pokemon:
             )
             for ability in abilities
         ]
+        self.status = None
 
     def __repr__(self) -> str:
         return (

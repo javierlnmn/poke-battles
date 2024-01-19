@@ -4,14 +4,28 @@ import clear_screen
 import time
 
 from game.pokemon import Pokemon, Types
-from config.config import DEFAULT_HEALTH_BAR_LENGTH, DEFAULT_SPACE_BETWEEN_SPRITES
+from config.config import (
+    DEFAULT_HEALTH_BAR_LENGTH,
+    DEFAULT_SPACE_BETWEEN_SPRITES,
+    ATTACK_TYPE_KEYWORD_DAMAGE,
+    ATTACK_TYPE_KEYWORD_EFFECT,
+    ATTACK_TYPE_KEYWORD_STATUS,
+    POKEMON_STAT_KEYWORD_ATTACK_PHYSICAL,
+    POKEMON_STAT_KEYWORD_ATTACK_SPECIAL,
+    POKEMON_STAT_KEYWORD_DEFENSE_PHYSICAL,
+    POKEMON_STAT_KEYWORD_DEFENSE_SPECIAL,
+    POKEMON_AFFECTED_KEYWORD_ENEMY,
+    POKEMON_AFFECTED_KEYWORD_SELF
+)
+
+from utils.ascii_art import print_full_screen_title_animation
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
         self.pokemon_1 = pokemon_1
         self.pokemon_2 = pokemon_2
         self.winner = None
-        self.starting_pokemon = pokemon_1 if pokemon_1.stats['speed'] > pokemon_2.stats['speed'] else pokemon_2
+        self.starting_pokemon = pokemon_1 if pokemon_1.stats['speed'] >= pokemon_2.stats['speed'] else pokemon_2
         self.turn = 1 if self.starting_pokemon is pokemon_1 else 2
 
 
@@ -31,6 +45,8 @@ class Battle:
         
         return battle_state
     
+    def switch_turn(self):
+        self.turn = 3 - self.turn
     
     def play_battle(self):
         
@@ -82,24 +98,68 @@ class Battle:
                 self.winner = self.pokemon_1
 
             self.switch_turn()
+
+        print(self.get_battle_state() + ('\n') * 2)
+        print(str(self.winner) + ' won the battle!')
+        time.sleep(2)
+        clear_screen.clear()
+
+        print_full_screen_title_animation('End')
+        clear_screen.clear()
+            
             
     def use_ability(self, attacker, ability, reciever):
 
-        if ('enemy' in ability.pokemon_affected):
+        if (POKEMON_AFFECTED_KEYWORD_ENEMY in ability.pokemon_affected):
         
-            print(ability.pokemon_affected['enemy'])
+            for attack_type in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY]:
+                
+                if attack_type == ATTACK_TYPE_KEYWORD_DAMAGE:
+                    # The damage dealt will be either physical or just special
 
-        if ('self' in ability.pokemon_affected):
+                    if POKEMON_STAT_KEYWORD_ATTACK_SPECIAL in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_DAMAGE]:
 
-            print(ability.pokemon_affected['self'])
+                        absolute_damage_dealt = self.calculate_attack_damage(
+                            attacker.stats[POKEMON_STAT_KEYWORD_ATTACK_SPECIAL],
+                            ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_DAMAGE][POKEMON_STAT_KEYWORD_ATTACK_SPECIAL],
+                            reciever.stats[POKEMON_STAT_KEYWORD_DEFENSE_SPECIAL]
+                        )
 
-        # print(attacker)
-        # print('\n')
-        # print(ability)
-        # print('\n')
-        # print(reciever)
-        # print('\n')
-        # print(Types.get_weaknesses(ability.type))
-        time.sleep(15)
+                        reciever.current_hp = (reciever.current_hp - absolute_damage_dealt) if absolute_damage_dealt <= reciever.current_hp else 0
 
-        pass
+                    elif POKEMON_STAT_KEYWORD_ATTACK_PHYSICAL in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_DAMAGE]:
+
+                        absolute_damage_dealt = self.calculate_attack_damage(
+                            attacker.stats[POKEMON_STAT_KEYWORD_ATTACK_PHYSICAL],
+                            ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_DAMAGE][POKEMON_STAT_KEYWORD_ATTACK_PHYSICAL],
+                            reciever.stats[POKEMON_STAT_KEYWORD_DEFENSE_PHYSICAL]
+                        )
+
+                        reciever.current_hp = (reciever.current_hp - absolute_damage_dealt) if absolute_damage_dealt <= reciever.current_hp else 0
+
+
+                elif attack_type == ATTACK_TYPE_KEYWORD_EFFECT:
+                    pass
+                
+                elif attack_type == ATTACK_TYPE_KEYWORD_STATUS:
+                    pass
+                    
+                else:
+                    clear_screen.clear()
+                    print('Attack type not defined. Please review the attack data in pokemon_data.json file.')
+                    time.sleep(2)
+                   
+        
+
+        if (POKEMON_AFFECTED_KEYWORD_SELF in ability.pokemon_affected):
+
+            print(ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_SELF])
+
+
+
+
+    def calculate_attack_damage(self, attacker_attack, move_attack, reciever_defense, attacker_modifier=1, reciever_modifier=1):
+        total_damage = (attacker_attack * ((attacker_attack * attacker_modifier / reciever_defense * reciever_modifier) * .6))
+        total_damage = 1 if total_damage <= 1 else total_damage
+        return round(total_damage)
+
