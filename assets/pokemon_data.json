@@ -92,7 +92,8 @@
             "speed": 81
         },
         "abilities": [
-            "surf"
+            "surf",
+            "dragon_dance"
         ]
     },
     "dewgong": {
@@ -172,5 +173,158 @@
             "speed": 100
         },
         "abilities": []
+    },
+    "squirtle": {
+        "visible_name": "Squirtle",
+        "type": [
+            "water"
+        ],
+        "color": "blue",
+        "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "sp_attack": 50,
+            "sp_defense": 64,
+            "speed": 43
+        },
+        "abilities": [
+            "tackle",
+            "water_gun"
+        ]
+    },
+    "jigglypuff": {
+        "visible_name": "Jigglypuff",
+        "type": [
+            "fairy",
+            "normal"
+        ],
+        "color": "magenta",
+        "stats": {
+            "hp": 115,
+            "attack": 45,
+            "defense": 20,
+            "sp_attack": 45,
+            "sp_defense": 25,
+            "speed": 20
+        },
+        "abilities": [
+            "sing",
+            "pound"
+        ]
+    },
+    "machop": {
+        "visible_name": "Machop",
+        "type": [
+            "fighting"
+        ],
+        "color": "white",
+        "stats": {
+            "hp": 70,
+            "attack": 80,
+            "defense": 50,
+            "sp_attack": 35,
+            "sp_defense": 35,
+            "speed": 35
+        },
+        "abilities": [
+            "tackle",
+            "karate_chop"
+        ]
+    },
+    "eevee": {
+        "visible_name": "Eevee",
+        "type": [
+            "normal"
+        ],
+        "color": "yellow",
+        "stats": {
+            "hp": 55,
+            "attack": 55,
+            "defense": 50,
+            "sp_attack": 45,
+            "sp_defense": 65,
+            "speed": 55
+        },
+        "abilities": [
+            "quick_attack",
+            "bite"
+        ]
+    },
+    "vulpix": {
+        "visible_name": "Vulpix",
+        "type": [
+            "fire"
+        ],
+        "color": "red",
+        "stats": {
+            "hp": 38,
+            "attack": 41,
+            "defense": 40,
+            "sp_attack": 50,
+            "sp_defense": 65,
+            "speed": 65
+        },
+        "abilities": [
+            "ember",
+            "tail_whip"
+        ]
+    },
+    "meowth": {
+        "visible_name": "Meowth",
+        "type": [
+            "normal"
+        ],
+        "color": "yellow",
+        "stats": {
+            "hp": 40,
+            "attack": 45,
+            "defense": 35,
+            "sp_attack": 40,
+            "sp_defense": 40,
+            "speed": 90
+        },
+        "abilities": [
+            "scratch",
+            "bite"
+        ]
+    },
+    "psyduck": {
+        "visible_name": "Psyduck",
+        "type": [
+            "water"
+        ],
+        "color": "yellow",
+        "stats": {
+            "hp": 50,
+            "attack": 52,
+            "defense": 48,
+            "sp_attack": 65,
+            "sp_defense": 50,
+            "speed": 55
+        },
+        "abilities": [
+            "water_gun",
+            "confusion"
+        ]
+    },
+    "growlithe": {
+        "visible_name": "Growlithe",
+        "type": [
+            "fire"
+        ],
+        "color": "red",
+        "stats": {
+            "hp": 55,
+            "attack": 70,
+            "defense": 45,
+            "sp_attack": 70,
+            "sp_defense": 50,
+            "speed": 60
+        },
+        "abilities": [
+            "ember",
+            "bite"
+        ]
     }
 }

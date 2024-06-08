@@ -41,8 +41,9 @@ def main():
         time.sleep(0.8)
 
 if __name__ == "__main__":
-    enemy_pokemon = random_pokemon()
+    main()
+    # enemy_pokemon = random_pokemon()
 
-    current_battle = Battle(enemy_pokemon, enemy_pokemon)
+    # current_battle = Battle(enemy_pokemon, enemy_pokemon)
         
-    current_battle.play_battle()
+    # current_battle.play_battle()

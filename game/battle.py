@@ -18,7 +18,11 @@ from config.config import (
     POKEMON_AFFECTED_KEYWORD_SELF
 )
 
-from utils.ascii_art import print_full_screen_title_animation
+from utils.ascii_art import (
+    print_full_screen_title_animation,
+    set_console_color,
+    reset_console_color,
+)
 
 class Battle:
     def __init__(self, pokemon_1: Pokemon, pokemon_2: Pokemon):
@@ -72,6 +76,9 @@ class Battle:
                 
                 print(str(self.pokemon_1)+" used "+selected_attack.visible_name+"!")
                 time.sleep(1.2)
+
+                # PONER AQUI CALCULO DE PRECISION POR SI EL ATAQUE ATINA O NO
+
                 clear_screen.clear()
                 
                 self.use_ability(self.pokemon_1, selected_attack, self.pokemon_2)
@@ -90,7 +97,6 @@ class Battle:
                 
                 self.use_ability(self.pokemon_2, selected_attack, self.pokemon_1)
 
-            
             if self.pokemon_1.current_hp <= 0:
                 self.winner = self.pokemon_2
                 break
@@ -117,7 +123,6 @@ class Battle:
             for attack_type in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY]:
                 
                 if attack_type == ATTACK_TYPE_KEYWORD_DAMAGE:
-                    # The damage dealt will be either physical or just special
 
                     if POKEMON_STAT_KEYWORD_ATTACK_SPECIAL in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_DAMAGE]:
 
@@ -141,8 +146,18 @@ class Battle:
 
 
                 elif attack_type == ATTACK_TYPE_KEYWORD_EFFECT:
-                    pass
-                
+            
+                    time.sleep(1.2)
+
+                    for stat in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_EFFECT]:
+                        multiplier = ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_EFFECT][stat]
+                        reciever.stats[stat] *= multiplier
+                        verb = (set_console_color('green') + "increased" + reset_console_color()) if multiplier > 1 else (set_console_color('red') + "decreased" + reset_console_color())
+                        percentage = round((multiplier - 1) * 100) if multiplier > 1 else round((1 - multiplier) * 100)
+                        print(f"{reciever.visible_name}'s {stat} {verb} by {percentage}%")
+
+                    time.sleep(2)
+
                 elif attack_type == ATTACK_TYPE_KEYWORD_STATUS:
                     pass
                     
@@ -151,13 +166,11 @@ class Battle:
                     print('Attack type not defined. Please review the attack data in pokemon_data.json file.')
                     time.sleep(2)
                    
-        
 
         if (POKEMON_AFFECTED_KEYWORD_SELF in ability.pokemon_affected):
 
             print(ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_SELF])
 
     def calculate_attack_damage(self, attacker_attack, move_attack, reciever_defense, attacker_modifier=1, reciever_modifier=1):
-        total_damage = (attacker_attack * ((attacker_attack * attacker_modifier / reciever_defense * reciever_modifier) * .6))
-        total_damage = 1 if total_damage <= 1 else total_damage
-        return round(total_damage)
+        total_damage = (attacker_attack * ((attacker_attack * attacker_modifier / reciever_defense * reciever_modifier) * .3))
+        return 1 if total_damage <= 1 else round(total_damage)

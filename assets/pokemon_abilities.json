@@ -102,7 +102,7 @@
                 }
             }
         },
-        "accuracy": 100
+        "accuracy": 98
     },
     "icy_wind": {
         "visible_name": "Icy Wind",
@@ -224,5 +224,139 @@
             }
         },
         "accuracy": 90
+    },
+    "sing": {
+        "visible_name": "Sing",
+        "type": "normal",
+        "category": "status",
+        "pokemon_affected": {
+            "enemy": {
+                "status": {
+                    "sleep": {
+                        "accuracy": 98
+                    }
+                }
+            }
+        },
+        "accuracy": 55
+    },
+    "pound": {
+        "visible_name": "Pound",
+        "type": "normal",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 40
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "karate_chop": {
+        "visible_name": "Karate Chop",
+        "type": "fighting",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 50
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "quick_attack": {
+        "visible_name": "Quick Attack",
+        "type": "normal",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 40
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "bite": {
+        "visible_name": "Bite",
+        "type": "dark",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 60
+                },
+                "status": {
+                    "flinch": {
+                        "accuracy": 30
+                    }
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "scratch": {
+        "visible_name": "Scratch",
+        "type": "normal",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "attack": 40
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "confusion": {
+        "visible_name": "Confusion",
+        "type": "psychic",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 50
+                },
+                "status": {
+                    "confusion": {
+                        "accuracy": 10
+                    }
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "roar": {
+        "visible_name": "Roar",
+        "type": "normal",
+        "category": "status",
+        "pokemon_affected": {
+            "enemy": {
+                "effect": {
+                    "defense": 0.7
+                }
+            }
+        },
+        "accuracy": 98
+    },
+    "fire_spin": {
+        "visible_name": "Fire Spin",
+        "type": "fire",
+        "category": "attack",
+        "pokemon_affected": {
+            "enemy": {
+                "damage": {
+                    "sp_attack": 35
+                },
+                "status": {
+                    "burning": {
+                        "accuracy": 80
+                    }
+                }
+            }
+        },
+        "accuracy": 85
     }
 }
