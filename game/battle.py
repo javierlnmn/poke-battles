@@ -28,7 +28,6 @@ class Battle:
         self.starting_pokemon = pokemon_1 if pokemon_1.stats['speed'] >= pokemon_2.stats['speed'] else pokemon_2
         self.turn = 1 if self.starting_pokemon is pokemon_1 else 2
 
-
     def get_battle_state(self):
         
         battle_state = "\n".join(
@@ -94,11 +93,15 @@ class Battle:
             
             if self.pokemon_1.current_hp <= 0:
                 self.winner = self.pokemon_2
-            elif self.pokemon_2.current_hp <= 0:
+                break
+
+            if self.pokemon_2.current_hp <= 0:
                 self.winner = self.pokemon_1
+                break
 
             self.switch_turn()
 
+        time.sleep(1.2)
         print(self.get_battle_state() + ('\n') * 2)
         print(str(self.winner) + ' won the battle!')
         time.sleep(2)
@@ -106,8 +109,7 @@ class Battle:
 
         print_full_screen_title_animation('End')
         clear_screen.clear()
-            
-            
+                     
     def use_ability(self, attacker, ability, reciever):
 
         if (POKEMON_AFFECTED_KEYWORD_ENEMY in ability.pokemon_affected):
@@ -155,11 +157,7 @@ class Battle:
 
             print(ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_SELF])
 
-
-
-
     def calculate_attack_damage(self, attacker_attack, move_attack, reciever_defense, attacker_modifier=1, reciever_modifier=1):
         total_damage = (attacker_attack * ((attacker_attack * attacker_modifier / reciever_defense * reciever_modifier) * .6))
         total_damage = 1 if total_damage <= 1 else total_damage
         return round(total_damage)
-

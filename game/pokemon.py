@@ -116,7 +116,7 @@ class Pokemon:
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
-        health_percentage = int((current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH)
+        health_percentage = int((current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH - 2) # we subtract 2 from the length to add the [] characters
                                 
 
         health_indicator = (
@@ -133,7 +133,7 @@ class Pokemon:
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
         health_indicator += (" ") * (
-            (DEFAULT_HEALTH_BAR_LENGTH + 2) - len(unstyled_health_indicator)
+            (DEFAULT_HEALTH_BAR_LENGTH) - len(unstyled_health_indicator)
         )
 
         health_bar = (
@@ -141,7 +141,7 @@ class Pokemon:
             + "["
             + reset_console_color()
             + "#" * health_percentage
-            + "-" * (65 - health_percentage)
+            + "-" * ((DEFAULT_HEALTH_BAR_LENGTH - 2) - health_percentage) # we subtract 2 from the length to add the [] characters
             + set_console_color(self.color)
             + "]"
             + reset_console_color()

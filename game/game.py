@@ -1,20 +1,43 @@
-# import questionary
+import clear_screen
+import questionary
 
-# from game.battle import Battle
+import time
 
+from game.battle import Battle
+from game.pokemon import user_choose_pokemon, random_pokemon
+from utils.ascii_art import print_full_screen_title_animation, print_full_screen_title, get_random_color
 
-# class Game:
-#     def __init__(self, battle: Battle):
-#         self.gamemode = None  # probably will use this in the future for pvp or pve
-#         self.battle = battle
+class Game:
 
-#     def play_battle_pve(self):
-#         self.battle.play()
+    @staticmethod
+    def play():
+        selected_pokemon = user_choose_pokemon()
+        clear_screen.clear()
+        time.sleep(.8)
 
+        print("You chose " + str(selected_pokemon) + "!")
+        print(selected_pokemon.get_ascii_art_color())
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
 
-# class Player:
-    
-#     def __init__(self, type, selected_pokemon, win_count):
-#         self.type = type
-#         self.selected_pokemon = selected_pokemon
-#         self.win_count = win_count
+        enemy_pokemon = random_pokemon()
+        print("Oh!")
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
+
+        print("A wild " + str(enemy_pokemon) + " appeared!")
+        print(enemy_pokemon.get_ascii_art_color())
+        time.sleep(1.5)
+        clear_screen.clear()
+        time.sleep(0.8)
+
+        print_full_screen_title_animation("Battle!")
+
+        current_battle = Battle(selected_pokemon, enemy_pokemon)
+        
+        current_battle.play_battle()
+        
+        clear_screen.clear()
+        time.sleep(0.8)
