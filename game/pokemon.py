@@ -12,6 +12,7 @@ from utils.ascii_art import (
     reset_console_ansi_escapes,
     reset_console_color,
 )
+
 from config.config import (
     POKEMON_DATA_FILE_PATH,
     POKEMON_TYPES_FILE_PATH,
@@ -24,8 +25,7 @@ pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
 pokemon_abilities = read_file_data(POKEMON_ABILITIES_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
 
-
-class Types:
+class Type:
     type_data = pokemon_types
 
     @classmethod
@@ -48,6 +48,7 @@ class Ability:
         self.type = type
         self.category = category
         self.pokemon_affected = pokemon_affected
+        self.accuracy = accuracy
     
     def __str__(self) -> str:
         return (
@@ -69,6 +70,7 @@ class Pokemon:
         self.color = color
         self.stats = stats
         self.current_hp = int(stats["hp"])
+        self.current_status = None
         self.abilities = [
             Ability(
                 ability,
@@ -168,6 +170,10 @@ class Pokemon:
 
     def pick_random_ability(self) -> Ability:
         return random.choice(self.abilities)
+
+    def apply_status_effect(self, battle):
+
+        return
 
 
 def user_choose_pokemon() -> Pokemon:

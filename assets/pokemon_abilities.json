@@ -10,9 +10,6 @@
                 }
             }
         },
-        "damage": {
-            "attack": 40
-        },
         "accuracy": 98
     },
     "ember": {
@@ -26,7 +23,10 @@
                 },
                 "status": {
                     "burning": {
-                        "accuracy": 20
+                        "status_description": "burning",
+                        "accuracy": 20,
+                        "duration": 3,
+                        "round_damage_percent": 7
                     }
                 }
             }
@@ -44,7 +44,11 @@
                 },
                 "status": {
                     "paralyzing": {
-                        "accuracy": 30
+                        "status_description": "paralyzed",
+                        "accuracy": 30,
+                        "duration": 4,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 50
                     }
                 }
             }
@@ -80,7 +84,7 @@
     "tail_whip": {
         "visible_name": "Tail Whip",
         "type": "normal",
-        "category": "status",
+        "category": "effect",
         "pokemon_affected": {
             "enemy": {
                 "effect": {
@@ -93,7 +97,7 @@
     "dragon_dance": {
         "visible_name": "Dragon Dance",
         "type": "dragon",
-        "category": "status",
+        "category": "effect",
         "pokemon_affected": {
             "self": {
                 "effect": {
@@ -115,7 +119,11 @@
                 },
                 "status": {
                     "freezing": {
-                        "accuracy": 20
+                        "status_description": "freezing",
+                        "duration": 2,
+                        "accuracy": 30,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 100
                     }
                 }
             }
@@ -151,7 +159,11 @@
                 },
                 "status": {
                     "freezing": {
-                        "accuracy": 30
+                        "status_description": "freezing",
+                        "duration": 2,
+                        "accuracy": 20,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 100
                     }
                 }
             }
@@ -169,7 +181,11 @@
                 },
                 "status": {
                     "paralyzing": {
-                        "accuracy": 20
+                        "status_description": "paralyzed",
+                        "accuracy": 30,
+                        "duration": 4,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 50
                     }
                 }
             }
@@ -187,7 +203,10 @@
                 },
                 "status": {
                     "poisoning": {
-                        "accuracy": 20
+                        "status_description": "posioned",
+                        "accuracy": 25,
+                        "duration": 4,
+                        "round_damage_percent": 5
                     }
                 }
             }
@@ -233,12 +252,16 @@
             "enemy": {
                 "status": {
                     "sleep": {
-                        "accuracy": 98
+                        "status_description": "asleep",
+                        "accuracy": 55,
+                        "duration": 3,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 100
                     }
                 }
             }
         },
-        "accuracy": 55
+        "accuracy": 90
     },
     "pound": {
         "visible_name": "Pound",
@@ -290,7 +313,11 @@
                 },
                 "status": {
                     "flinch": {
-                        "accuracy": 30
+                        "status_description": "flinched",
+                        "accuracy": 30,
+                        "duration": 1,
+                        "skip_turn": true,
+                        "skip_turn_accuracy": 100
                     }
                 }
             }
@@ -321,7 +348,10 @@
                 },
                 "status": {
                     "confusion": {
-                        "accuracy": 10
+                        "status_description": "confused",
+                        "accuracy": 25,
+                        "duration": 1,
+                        "round_damage_percent": 8
                     }
                 }
             }
@@ -331,7 +361,7 @@
     "roar": {
         "visible_name": "Roar",
         "type": "normal",
-        "category": "status",
+        "category": "effect",
         "pokemon_affected": {
             "enemy": {
                 "effect": {
@@ -352,7 +382,10 @@
                 },
                 "status": {
                     "burning": {
-                        "accuracy": 80
+                        "status_description": "burning",
+                        "accuracy": 20,
+                        "duration": 3,
+                        "round_damage_percent": 7
                     }
                 }
             }

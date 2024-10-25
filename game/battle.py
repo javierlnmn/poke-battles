@@ -3,7 +3,9 @@ import clear_screen
 
 import time
 
-from game.pokemon import Pokemon, Types
+import random
+
+from game.pokemon import Pokemon, Type
 from config.config import (
     DEFAULT_HEALTH_BAR_LENGTH,
     DEFAULT_SPACE_BETWEEN_SPRITES,
@@ -77,11 +79,15 @@ class Battle:
                 print(str(self.pokemon_1)+" used "+selected_attack.visible_name+"!")
                 time.sleep(1.2)
 
-                # PONER AQUI CALCULO DE PRECISION POR SI EL ATAQUE ATINA O NO
+                ability_hit = self.check_ability_hit(selected_attack.accuracy)
 
-                clear_screen.clear()
-                
-                self.use_ability(self.pokemon_1, selected_attack, self.pokemon_2)
+                if ability_hit:
+                    clear_screen.clear()
+                    self.use_ability(self.pokemon_1, selected_attack, self.pokemon_2)
+                else:
+                    print(f'But it {set_console_color('red')}failed{reset_console_color()}!')
+                    time.sleep(1.2)
+                    clear_screen.clear()
                 
             elif self.turn == 2:
                 
@@ -93,9 +99,16 @@ class Battle:
                 
                 print((" " * (DEFAULT_HEALTH_BAR_LENGTH + DEFAULT_SPACE_BETWEEN_SPRITES)) + str(self.pokemon_2)+" used "+selected_attack.visible_name+"!")
                 time.sleep(1.2)
-                clear_screen.clear()
-                
-                self.use_ability(self.pokemon_2, selected_attack, self.pokemon_1)
+
+                ability_hit = self.check_ability_hit(selected_attack.accuracy)
+
+                if ability_hit:
+                    clear_screen.clear()
+                    self.use_ability(self.pokemon_2, selected_attack, self.pokemon_1)
+                else:
+                    print(f'But it {set_console_color('red')}failed{reset_console_color()}!')
+                    time.sleep(1.2)
+                    clear_screen.clear()            
 
             if self.pokemon_1.current_hp <= 0:
                 self.winner = self.pokemon_2
@@ -115,7 +128,16 @@ class Battle:
 
         print_full_screen_title_animation('End')
         clear_screen.clear()
-                     
+
+    def check_ability_hit(self, accuracy):
+        
+        hitting_factor = random.randint(1, 100)
+
+        if accuracy < hitting_factor:
+            return False
+        
+        return True
+
     def use_ability(self, attacker, ability, reciever):
 
         if (POKEMON_AFFECTED_KEYWORD_ENEMY in ability.pokemon_affected):
@@ -159,7 +181,13 @@ class Battle:
                     time.sleep(2)
 
                 elif attack_type == ATTACK_TYPE_KEYWORD_STATUS:
-                    pass
+                    
+                    time.sleep(1.2)
+
+                    for status in ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_STATUS]:
+                        status_data = ability.pokemon_affected[POKEMON_AFFECTED_KEYWORD_ENEMY][ATTACK_TYPE_KEYWORD_STATUS][status]
+
+                        
                     
                 else:
                     clear_screen.clear()
